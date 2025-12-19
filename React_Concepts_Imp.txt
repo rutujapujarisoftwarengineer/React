@@ -1,0 +1,256 @@
+concepts of react -
+
+React Concepts (Beginner → Advanced)
+1. React Basics
+What is React?
+Virtual DOM
+SPA (Single Page Application)
+JSX (JavaScript XML)
+Components (Functional vs Class)
+Props
+State
+
+Rendering Elements
+2. Component-Level Concepts
+Component Lifecycle (for class components)
+Conditional Rendering
+Lists & Keys
+Event Handling in React
+Controlled vs Uncontrolled Components
+Fragments
+Refs & Forward Refs
+
+3. Hooks (Most Important for Interviews)
+Basic Hooks
+useState
+useEffect
+useRef
+useContext
+
+Advanced Hooks
+useReducer
+useCallback
+useMemo
+useLayoutEffect
+useImperativeHandle
+
+Custom Hooks (very important)
+4. React Architecture Concepts
+Component Composition
+Container vs Presentational Components
+Prop Drilling
+Lifting State Up
+
+5. React Router Concepts
+SPA Navigation
+<BrowserRouter>
+<Routes> & <Route>
+Navigation using useNavigate()
+Dynamic Routing
+URL Params
+Protected Routes (Auth-based)
+
+6. State Management (Very Important)
+Local State
+useState, useReducer
+Context API
+Create context
+Provide context
+Consume context
+Redux
+Store
+Reducers
+Actions
+Dispatch
+Redux Toolkit (RTK → currently the industry standard)
+Thunks (for async calls)
+
+7. API Handling & Side Effects
+Fetch API
+Axios
+Async/Await
+useEffect with dependencies
+Error Handling
+Loading states
+Custom API hooks
+
+8. Performance Optimization
+React.memo
+useMemo
+useCallback
+Lazy Loading
+Code Splitting
+Suspense & React.lazy
+
+9. Forms in React
+Controlled Components
+Form Validation
+Libraries: Formik / React Hook Form
+Handling Submit & Errors
+
+10. Styling in React
+CSS Modules
+Styled Components
+Material UI
+Tailwind CSS
+Bootstrap Integration
+
+11. Advanced React Concepts
+Higher Order Components (HOC)
+Render Props
+Error Boundaries
+Portals
+Concurrent Rendering
+Server-Side Rendering (SSR)
+Static Site Generation (SSG)
+
+12. Next.js (Framework on top of React)
+Pages & Routing
+API Routes
+SSR, SSG, ISR
+Server & Client Components
+Middleware
+Deployment
+
+13. Build & Deployment
+Vite / Create React App
+Environment Variables
+Production Build
+Deploy to Netlify / Vercel / AWS
+
+14. Testing
+Jest
+React Testing Library
+Unit Testing Components
+
+🎯 What you MUST know for jobs (Top Priorities)
+
+If targeting a job as a React Developer / Java Full Stack Dev, focus on:
+
+✔ React Basics
+✔ Hooks (Very Very Important)
+✔ React Router
+✔ Context API / Redux Toolkit
+✔ API calls (Axios)
+✔ Component architecture
+✔ Material UI / Tailwind
+✔ Git & Deployment
+✔ Basic Testing
+
+Stage 2: React Basics
+What is React
+JSX
+Functional Components
+Props
+State
+Events
+Lists & Keys
+Conditional Rendering
+
+Stage 3: React Hooks
+useState
+useEffect
+useRef
+useContext
+Custom Hooks
+
+Advanced Hooks:
+useCallback
+useMemo
+useReducer
+useLayoutEffect
+
+Stage 4: React Router
+BrowserRouter
+Routes & Route
+useNavigate
+Link
+Protected Routes
+Dynamic Routing
+
+Stage 5: State Management
+Context API
+Redux (optional)
+Redux Toolkit (MOST IMPORTANT)
+Redux Thunk
+
+Stage 6: Working with APIs
+Axios
+Async/Await
+Error Handling
+Loading States
+API Service Layer
+
+Stage 7: UI & Styling
+CSS Modules
+Material UI
+Tailwind CSS
+Styled Components
+
+Stage 8: Performance Optimization
+React.memo
+useMemo
+useCallback
+Lazy Loading
+Suspense
+
+Stage 9: Advanced Topics
+Portals
+Error Boundaries
+HOCs
+Render Props
+SSR vs CSR
+Next.js basics
+
+Stage 10: Build & Deployment
+Vite or CRA
+Environment Variables
+Minification / Bundling
+Deploy to Netlify / Vercel / GitHub Pages
+
+✅ 2. React Interview Questions (Important & Repeated)
+Basic Level
+
+What is React?
+
+Difference between Virtual DOM & Real DOM
+
+What is JSX?
+
+What are Props vs State?
+
+What are Keys in React?
+
+Hooks
+
+What is useState?
+
+What is useEffect and its dependency array?
+
+What is useCallback vs useMemo?
+
+What are React custom hooks?
+
+What is useReducer?
+
+React Router
+
+Difference between useNavigate and useHistory.
+
+What are protected routes?
+
+State Management
+
+Redux vs Context API
+
+Redux flow
+
+Why Redux Toolkit?
+
+Advanced
+
+What is React.memo?
+
+What is reconciliation?
+
+What are Error Boundaries?
