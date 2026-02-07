@@ -1,0 +1,65 @@
+Customer Support Ticketing System (Full Stack) -
+3. Customer Support Ticketing System - IT Service Management/ResolveHub
+Developed a full-stack enterprise IT Service Management (ITSM) application to manage incidents, service requests, and support workflows within an organization.
+
+Built responsive, component-based user interfaces using React functional components, Hooks, and role-based routing for End Users, Support Agents, and Admins.
+
+Designed and implemented RESTful web services using Spring Boot following layered architecture (Controller, Service, Repository) and MVC principles.
+Integrated React frontend with Spring Boot backend using REST APIs and JSON data exchange, ensuring smooth end-to-end application flow.
+
+Used MySQL for relational data modeling, persistence, and query optimization with proper entity relationships.
+Used Git version control for source code management and followed clean code practices, reusable components, and industry-standard coding conventions.
+________________________________________________________________________________
+Domain: IT Services / SaaS
+
+Technologies: React, Java, Spring Boot, REST APIs
+
+What you build:
+
+Users raise support tickets
+
+Support agents assign and resolve tickets
+
+Admin manages categories and users
+
+Key Features:
+
+Ticket status workflow (Open/In Progress/Resolved)
+
+Role-based dashboards
+
+API-driven communication
+_____________________________________________________________________
+Online Banking Backend System (Java Backend) -
+Type: Java Backend (Industry-Level Use Case)
+
+Technologies:
+Java (Core Java), Spring Boot, RESTful APIs, MySQL
+
+Project Description (Resume-Ready):
+
+Developed a backend REST API system for core banking operations.
+
+Implemented modules for customer registration, account management, balance inquiry, and transaction processing.
+
+Designed RESTful APIs using Spring Boot following layered architecture (Controller, Service, Repository).
+
+Integrated MySQL database to store customer details, accounts, and transaction history.
+
+Implemented business validations such as minimum balance checks and transaction limits.
+
+Handled exception management and proper API response handling.
+
+Ensured data consistency and transactional integrity.
+
+Key Features (Interview Value):
+
+Account creation & management
+
+Fund transfer logic
+
+Transaction history
+
+Business rule validation
+
+REST API design

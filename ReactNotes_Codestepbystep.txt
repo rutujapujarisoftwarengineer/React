@@ -1,0 +1,4461 @@
+Notes from Youtube channel Code Steop by Step - 
+Github code link - 
+React Router 7 code :- https://github.com/anil-sidhu/react-router-7
+React 19 code :- https://github.com/anil-sidhu/react-19
+____________________________________________________________________________________________________________________________________________
+
+1. Write First Code in React App -
+📄 First File That Executes: index.html
+Inside index.html, you have:
+The <script> tag loads main.jsx.
+The root element is the starting point of the React app.
+
+
+📄 In main.jsx File
+createRoot() finds the element with id root in index.html.
+It renders the <App /> component inside that root.
+This is the main job of the main.jsx file.
+
+📄 Replace All Code in App.jsx With:
+function App() {
+  return (
+    <>
+      <h1>Hello World</h1>
+    </>
+  );
+}
+export default App;
+
+How React Works:
+You can write HTML code inside JavaScript using JSX.
+React renders everything properly in the browser.
+
+Why Should Component Names Start With a Capital Letter?
+Because React treats lowercase tags like HTML elements (e.g., <div>, <h1>), and uppercase tags as custom React components.
+
+Return Must Have a Single Parent Tag-
+All JSX returned by a component must be wrapped inside a single parent element like a <div> or a fragment <> </>.
+
+
+📄 Create a New File in src: Header.jsx
+
+function Header() {
+  return (
+    <div>
+      <h4>Header file</h4>
+    </div>
+  );
+}
+export default Header;
+
+📄 Import and Use Header in App.jsx
+import { useState } from 'react';
+import Header from './Header';
+
+function App() {
+ return (
+    <div>
+      <Header />
+      <h1>Hello World</h1>
+    </div>
+  );
+}
+export default App;
+
+2. Library vs Framework -
+Library: You control the flow (e.g., React).
+Framework: The framework controls the flow; you just follow its structure (e.g., Angular).
+__________________________________________________________________________________________________________________________________________
+
+2. Files and Folder structure in react -
+1. package.json -
+Most important file in a React project.
+It contains:Project name, version, and metadata. Build commands and scripts
+** Dependencies and devDependencies - 
+Difference Between Dependencies and DevDependencies
+* Dependencies -
+Required for running the project (e.g., React, ReactDOM)
+
+*DevDependencies -
+Required only during development (e.g., ESLint, Vite, Babel). These packages are downloaded and stored inside the node_modules folder.
+
+2. package-lock.json -
+It stores the exact version of each installed dependency.Contains a nested structure of dependencies.
+Helps ensure consistent installs across different machines.
+
+3. README.md -
+A documentation file about your project.
+Commonly includes: Project purpose. How to install and run. Author info, etc.
+
+4. vite.config.js -
+Contains configuration settings for Vite (the build tool). Used to set aliases, plugins, ports, etc.
+
+5. eslint.config.js - 
+Contains ESLint rules (JavaScript code standards). Helps with code quality and linting
+
+6. .gitignore -
+Lists files and folders that should not be pushed to Git (e.g., node_modules, .env, dist, etc.)
+
+** Project Files Overview - 
+* index.html -
+Browser's entry point (root <div> is here)
+
+* main.jsx - 	
+React/JS entry point; renders the <App /> component
+
+* App.jsx -
+Main React component
+
+* App.css, index.css -
+Styling files for components and global styles
+
+** Best Practices -
+Create React components inside the src/components folder.If something is meant for public access (like images, favicon, etc.), 
+use the public folder. For assets used internally (like logos, icons, CSS files), use an assets folder inside src.
+
+* node_modules -
+Contains all installed libraries and packages
+Automatically created when you run npm install or yarn install
+
+Q. Why Should You Not Push node_modules to Git?
+-It is very large in size. Other developers can simply run npm install to recreate it from package.json
+__________________________________________________________________________________________________________________________________________
+
+3. Components -
+What is a Component?
+In React, a component is a small, reusable part of the UI (User Interface). Think of a component as a building block of your app.
+Example:
+If your project is a car, its components would be:
+Tyres,Engine,Doors,Gearbox
+Similarly, in a React project:
+The header, button, footer, or form field can be components.
+
+** Nested Components -
+A component can contain other smaller components inside it.
+For example: A Form component may include an Input component and a Button component
+
+** Role of Components in React -
+Every part of the UI in React is made using components. Components can be reused throughout the app.
+They make the code modular, readable, and easy to maintain.
+
+** Rules for Writing Components -
+Always start component names with a Capital Letter. Components must return a single parent tag.
+Use <div>...</div> or <>...</> (React Fragment).
+
+** You can use a component like an HTML tag:
+<Fruit />
+<Color></Color>
+
+Q.How to Write Your First React Component?
+=>In App.jsx:
+function App() {
+  return (
+    <div>
+      <h1>First Component</h1>
+    </div>
+  );
+}
+Add more components in the same file:
+
+function Fruit() {
+  return <h1>Apple</h1>;
+}
+
+function Color() {
+  return <h1>Red Color</h1>;
+}
+How to Use a Component -
+
+function App() {
+  return (
+    <div>
+      <h1>First Component</h1>
+      <Fruit />        {/* Self-closing tag */}
+      <Color></Color>  {/* Normal tag */}
+    </div>
+  );
+}
+** Note -
+A React component must return a single tag.
+You cannot return two or more HTML elements side by side without wrapping them.
+return (
+  <div>
+    <h1>Title</h1>
+    <p>Description</p>
+  </div>
+);
+
+** Component vs Normal Function -
+* Normal Function - Can start with lowercase
+Executes JavaScript logic
+Called like myFunction()
+Any data type
+
+** React Component - Must start with a Capital Letter
+Returns JSX (UI)
+Used like <MyComponent />
+Returns JSX (HTML-like)
+__________________________________________________________________________________________________________________________________________
+
+4. Importing and exporting of components -
+** Why export/import components?
+We should not create all components in a single file. If we want to use a component in other files, we must export it.To use an exported 
+component, we need to import it in the file where we want to use it.
+
+Example
+If you create an Image component, you can reuse it in multiple places like:
+Profile picture
+Post section
+Navbar
+Dropdown
+This keeps your code modular and reusable.
+
+Create a Component File: UserComponent.jsx
+Step 1: Create the Component
+function Login() {
+  return (
+    <div>
+      <h1>Login User</h1>
+    </div>
+  );
+}
+
+Step 2: Export the Component
+export default Login;
+
+Step 3: Import and Use in App.jsx
+import Login from "./UserComponent.jsx";
+
+function App() {
+  return (
+    <div>
+      <h1>Importing and Exporting Components</h1>
+      <Login />
+    </div>
+  );
+}
+
+** Default Export -
+You can export only one default per file. Import it without curly braces.
+// Export
+export default Login;
+
+// Import
+import Login from "./UserComponent.jsx";
+
+** Named Export -
+You can export multiple values from a single file using named exports.
+// Export
+export function Profile() {
+  return <h1>Profile</h1>;
+}
+
+export function Setting() {
+  return <h1>Setting</h1>;
+}
+
+// Import
+import { Profile, Setting } from "./UserComponent.jsx";
+Both Default and Named Exports in One File
+
+function Login() {
+  return <h1>Login User</h1>;
+}
+
+export function Profile() {
+  return <h1>Profile</h1>;
+}
+
+export function Setting() {
+  return <h1>Setting</h1>;
+}
+
+export default Login;
+
+// Import in App.jsx
+import Login, { Profile, Setting } from "./UserComponent.jsx";
+
+function App() {
+  return (
+    <div>
+      <h1>Importing and Exporting Components</h1>
+      <Login />
+      <Profile />
+      <Setting />
+    </div>
+  );
+}
+
+** Exporting and Importing Variables -
+You can also export variables (like keys, constants):
+// UserComponent.jsx
+export const UserKey = "turjfhdbjzsydfl";
+
+// App.jsx
+import Login, { Profile, Setting, UserKey } from "./UserComponent.jsx";
+
+function App() {
+  return (
+    <div>
+      <h1>Importing and Exporting Components</h1>
+      <Login />
+      <Profile />
+      <Setting />
+      <h2>{UserKey}</h2>
+    </div>
+  );
+}
+
+** Summary -
+1. Default Export -
+Syntax : export default ComponentName
+Import Syntax: import ComponentName from "file"
+
+2. Named Export -
+Syntax : export { ComponentName } or export const
+Import Syntax : import { ComponentName } from "file"
+
+3. Combined Export -
+Syntax : Default + Named
+Import Syntax :import Default, { Named1, Named2 }
+__________________________________________________________________________________________________________________________________________
+
+5. JSX in React - 
+It is a syntax extension for JavaScript that allows you to write HTML-like code inside JavaScript files.
+Why use JSX?
+JSX makes it easier and cleaner to create React elements and build the UI.
+Without JSX: HTML and JavaScript are written separately.
+With JSX: You can write both together in the same file.
+
+Example with JSX:
+function App() {
+  const userName = "Anil Sidhu";
+  let x = 20;
+  let y = 30;
+
+  return (
+    <div>
+      <h1>{userName}</h1>
+      <h1>{10 + 20 + 30}</h1>
+      <h1>{x * y}</h1>
+      <button onClick={() => alert("Hello")}>Click</button>
+    </div>
+  );
+}
+Here:
+{userName} is JavaScript inside JSX.
+{10 + 20 + 30} and {x * y} are also JS expressions.
+The onClick event is handled using an arrow function.
+
+Without JSX (Old React method):
+import { createElement } from "react";
+function App() {
+  return createElement(
+    "div",
+    { id: "rootDiv" },
+    createElement("h1", { className: "heading" }, "Hello without JSX")
+  );
+}
+This is harder to read and write, which is why JSX is preferred.
+JSX Full Form -
+There’s often some confusion about what JSX stands for. Some say it means JavaScript Extension, while others believe it's JavaScript XML. However, there is no official full form of JSX mentioned on the React official website — it’s just a syntax extension used to write HTML-like code in JavaScript.
+__________________________________________________________________________________________________________________________________________
+
+6. JavaScript in JSX with Curly Braces -
+Using Variables Inside JSX - JSX allows you to insert JavaScript variables inside HTML using curly braces {}.
+function App() {
+  const name = "Anil Sidhu";
+  let x = 10;
+  let y = 20;
+  return (
+    <div>
+      <h1>JSX with Curly Braces</h1>
+<h2>{name}</h2>
+      <h1>{x + y}</h1>
+    </div>
+  );
+}
+
+Conditional Rendering in JSX - You can also use conditions inside JSX using the ternary operator:
+function App() {
+  const name = "Anil Sidhu";
+
+  return (
+    <div>
+      
+      <h2>{name ? name : "User not Found"}</h2>
+      
+    </div>
+  );
+}
+
+Using Functions Inside JSX - You can call functions directly within JSX:
+function App() {
+  function fruit() {
+    return "Apple";
+  }
+  return <h1>{fruit()}</h1>;
+}
+
+Performing Operations in JSX - You can write logic-based operations and call them inside your JSX:
+
+function App() {
+  function operation(a, b, op) {
+    if (op == "+") {
+      return a + b;
+    } else if (op == "-") {
+      return a - b;
+    } else {
+      return a * b;
+    }
+  }
+  return (
+    <div>
+<h1>{operation(20, 10, "-")}</h1>
+<h1>{operation(20, 10, "+")}</h1>
+<h1>{operation(20, 10, "")}</h1>
+    </div>
+  );
+}
+
+Using Objects and Arrays with JSX -
+Working with objects:
+function App() {
+  const userObj = {
+    name: "anil Sidhu",
+    email: "anil@test.com",
+    age: 29,
+  };
+
+  return (
+    <div>
+<h1>{userObj.name}</h1>
+      <h1>{userObj.email}</h1>
+<h1>{userObj.age}</h1>
+    </div>
+  );
+}
+
+Working with arrays:
+function App() {
+  const userArray = ["sam", "peter", "bruce"];
+
+  return (
+    <div>
+<h1>{userArray[0]}</h1>
+    </div>
+  );
+}
+
+Using HTML Tag Attributes with JSX - JSX also allows you to use dynamic values inside tag properties such as value, id, or src.
+function App() {
+  const name = "peter";
+  let path =
+"https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2018/4/10/1/HBFB1406_180126_dog-on-rug_041.jpg.rend.hgtvcom.616.822.suffix/1523383802334.jpeg";
+
+  return (
+    <div>
+      <input type="text" value={name} id={name} />
+      <br />
+      <img src={path} />
+    </div>
+  );
+}
+_______________________________________________________________________________________________________________________________________________
+
+7. Click Event and Function call -
+Difference Between JavaScript and React Function Calls -
+
+HTML Example:
+<h1>Anil Sidhu Todos</h1>
+    <img
+      src="https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2018/4/10/1/HBFB1406_180126_dog-on-rug_041.jpg.rend.hgtvcom.616.822.suffix/1523383802334.jpeg"
+      alt="Anil Sidhu"
+      class="photo"
+    />
+
+    <ul>
+      <li>Invent the traffic light</li>
+      <li>Rehearse a movie scene</li>
+      <li>Improve the spectrum technology</li>
+    </ul>
+
+    <button onclick="callFun()">Click Me</button>
+
+    <script>
+      function callFun() {
+        alert("function called");
+      }
+    </script>
+
+
+The Same Code Won’t Work in React JSX -
+function App() {
+  function callFun() {
+    alert("Function called");
+  }
+
+  return (
+    <div>
+      <button onclick="callFun()">Click Me</button> {/* ❌ Wrong */}
+    </div>
+  );
+}
+
+
+Correct Way to Use onClick in React JSX -
+function App() {
+  function callFun() {
+    alert("Function called");
+  }
+
+  return (
+    <div>
+      <button onClick={callFun}>Click Me</button>
+    </div>
+  );
+}
+
+
+Important JSX Rules:
+1. Use camelCase: onClick instead of onclick.
+2. Don’t use quotes "": JSX treats quoted functions as strings.
+3. Do not call the function immediately using (). Just pass the reference like onClick={callFun}.
+
+Using Arrow Functions in JSX -
+You can also use arrow functions instead of normal functions:
+function App() {
+  const fruits = () => {
+    alert("Apple");
+  };
+
+  return (
+    <div>
+      <button onClick={fruits}>Click Me</button>
+    </div>
+  );
+}
+
+Passing Parameters to Functions in JSX -
+If you want to pass parameters, you must use an inline arrow function:
+
+function App() {
+  const fruits = (name) => {
+    alert(name);
+  };
+
+  return (
+    <div>
+      <button onClick={() => fruits("Apple")}>Apple</button>
+      <button onClick={() => fruits("Banana")}>Banana</button>
+    </div>
+  );
+}
+
+Use Arrow Functions - 
+Because onClick={fruits("Apple")} will call the function immediately, not on click. Using onClick={() => fruits("Apple")} 
+ensures the function runs only when the button is clicked.
+_______________________________________________________________________________________________________________________________________________
+
+8. State and Hooks in react -
+When working with React JS, managing dynamic data is an essential part of building interactive applications. Let’s understand how 
+state works and how to use it effectively using useState.
+
+State in react js -
+State is like a variable but smarter. It stores dynamic data and automatically re-renders the component whenever the state changes.
+React does not understand normal JavaScript variables for UI updates. If you want to update and reflect values in the UI, use state.
+
+State = Data Container
+State is mutable (it can change).
+It allows React components to keep track of data that changes over time.
+React will automatically update the UI when the state value changes.
+
+Hooks in React -
+Hooks are special functions that let you use React features in functional components.
+With hooks, you can use:
+
+1. State (useState)
+2. Lifecycle methods (useEffect)
+3. Other advanced features
+How to Use useState -
+import { useState } from "react";
+
+Use useState in Your Component -
+function App() {
+  const [fruit, setFruit] = useState("Apple");
+
+  const handleFruit = () => {
+    setFruit("Banana");
+  };
+
+  return (
+    <div>
+      <h1>State in React JS</h1>
+      <h2>{fruit}</h2>
+      <button onClick={handleFruit}>Change Fruit Name</button>
+    </div>
+  );
+}
+Explanation:
+fruit is the current value.
+setFruit is the function to update the value.
+Clicking the button changes "Apple" to "Banana" and updates the UI.
+
+Using State in a Different Component -
+Create a New Component (e.g., Counter.jsx)
+import React, { useState } from "react";
+
+const Counter = () => {
+  const [counter, setCounter] = useState(0);
+
+  return (
+    <div>
+      <h1>Counter: {counter}</h1>
+      <button onClick={() => setCounter(counter + 1)}>Update Counter</button>
+    </div>
+  );
+};
+export default Counter;
+
+
+Import It in App.jsx -
+import Counter from "./Counter";
+
+function App() {
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
+}
+export default App;
+
+Multiple States in One Component -
+import React, { useState } from "react";
+
+const Counter = () => {
+  const [counter, setCounter] = useState(0);
+  const [rCounter, setRCounter] = useState(10);
+
+  return (
+    <div>
+      <h1>Counter: {counter}</h1>
+      <h1>R Counter: {rCounter}</h1>
+      <button onClick={() => setCounter(counter + 1)}>Update Counter</button>
+      <button onClick={() => setRCounter(rCounter - 1)}>Update R Counter</button>
+    </div>
+  );
+};
+export default Counter;
+
+** useState lets you manage dynamic values in your UI.
+React re-renders the component every time you call the update function.
+You can use multiple state values in a single component.
+State makes your React components interactive and responsive.
+______________________________________________________________________________________________________________________________________________
+
+9. Toggle, Hide & Show in React JS -
+Step-by-Step: Toggle Text Example -
+
+import { useState } from "react";
+function App() {
+  const [display, setDisplay] = useState(true);
+
+  return (
+    <div>
+      <h1>Toggle in React JS</h1>
+      <button onClick={() => setDisplay(!display)}>Toggle</button>
+      {display ? <h1>Anil Sidhu</h1> : null}
+    </div>
+  );
+}
+export default App;
+
+Explanation:
+We import useState to handle the toggle.
+display is a boolean value (true or false).
+On button click, we change the value of display.
+The heading will be shown only if display is true.
+
+Toggle a Component (Hide/Show Component) -
+*Create a Component
+User.jsx -
+function User() {
+  return (
+    <div>
+      <h1>User Component</h1>
+    </div>
+  );
+}
+export default User;
+
+
+*Import & Use the Component in App.jsx -
+import { useState } from "react";
+import User from "./User";
+function App() {
+  const [display, setDisplay] = useState(true);
+
+  return (
+    <div>
+      <h1>Toggle in React JS</h1>
+      <button onClick={() => setDisplay(!display)}>Toggle</button>
+      {display ? <User /> : null}
+    </div>
+  );
+}
+export default App;
+
+What’s Happening:
+User component is conditionally rendered using {display ? <User /> : null}.
+On clicking the Toggle button, the component appears or disappears.
+______________________________________________________________________________________________________________________________________________
+
+10. Multiple Conditional Rendering in React -
+Handle multiple conditions using a ternary operator.
+Define state and button
+Change state value on button click
+Apply Condition with state
+
+Counter with Multiple Conditions -
+import { useState } from "react";
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>Counter</button>
+
+      {
+        count === 0 ? <h1>Condition 0</h1>
+        : count === 1 ? <h1>Condition 1</h1>
+        : count === 2 ? <h1>Condition 2</h1>
+        : count === 3 ? <h1>Condition 3</h1>
+        : count === 4 ? <h1>Condition 4</h1>
+        : <h1>Other Condition</h1>
+      }
+    </div>
+  );
+}
+export default App;
+
+How It Works:
+useState(0) creates a count state with an initial value of 0.
+The button increases the count value on each click.
+The JSX uses nested ternary operators to check multiple values of count.
+Based on the count, it conditionally renders different headings.
+__________________________________________________________________________________________________________________________________________
+
+11. Props in react -
+Props (short for "properties") are like function parameters. They allow you to pass data from one component to another (typically from parent to child).
+User.jsx -
+function User(props) {
+  return (
+    <div>
+      <h1>{props.name}</h1>
+    </div>
+  );
+}
+export default User;
+
+App.jsx -
+import User from "./User";
+function App() {
+  return (
+    <div>
+      <h1>Props in React JS</h1>
+      <User name="Anil Sidhu" />
+    </div>
+  );
+}
+export default App;
+
+You can also use destructuring in the User component:
+function User({ name }) {
+  return <h1>{name}</h1>;
+}
+
+Passing Multiple Props -
+<User name="Anil Sidhu" age={29} email="anil@test.com" />
+function User({ name, age, email }) {
+  return (
+    <div>
+      <h2>{name}</h2>
+      <h2>{age}</h2>
+      <h2>{email}</h2>
+    </div>
+  );
+}
+
+Pass Props as Variables -
+let name = "Anil";
+let age = 29;
+let email = "anil@test.com";
+<User name={name} age={age} email={email} />
+
+Pass Props as Objects -
+let user = { name: "Anil", age: 29, email: "anil@test.com" };
+<User user={user} />
+
+function User({ user }) {
+  return (
+    <div>
+      <h2>{user.name}</h2>
+      <h2>{user.age}</h2>
+      <h2>{user.email}</h2>
+    </div>
+  );
+}
+
+
+Pass Array Props -
+let colleges = ["IIT", "DU", "NIT"];
+<College name={colleges[0]} />
+<College name={colleges[1]} />
+<College name={colleges[2]} />
+
+function College({ name }) {
+  return <h1>{name}</h1>;
+}
+
+
+Pass Props on Click (Dynamic Props) -
+import { useState } from "react";
+import Student from "./Student";
+function App() {
+  const [student, setStudent] = useState();
+
+  return (
+    <div>
+      <h1>Props in React JS</h1>
+      {student && <Student name={student} />}
+      <button onClick={() => setStudent("Bhaskar")}>Update Student</button>
+    </div>
+  );
+}
+
+function Student({ name }) {
+  return <h1>Student Name: {name}</h1>;
+}
+___________________________________________________________________________________________________________________________________________
+
+12. Default props -
+Default Props
+function User({ name = "New User" }) {
+  return <h1>Hi, {name}</h1>;
+}
+export default User;
+
+Usage in App.jsx -
+<User name="Anil Sidhu" />
+<User name="Sam" />
+<User name="Bhasker" />
+<User />          // Will show "Hi, New User"
+<User />          // Will show "Hi, New User"
+
+children Props (JSX as Props) -
+
+When you pass JSX content between component tags, it is received as children.
+import Wrapper from "./Wrapper";
+function App() {
+  return (
+    <div>
+      <h1>Props in React js</h1>
+      <Wrapper color="Orange">
+        <h1>Hello Everyone</h1>
+      </Wrapper>
+
+      <Wrapper>
+        <h1>Hello Anil</h1>
+      </Wrapper>
+
+      <Wrapper>
+        <h1>Hello Admin</h1>
+        <h2 style={{ color: "Red" }}>Please Login</h2>
+      </Wrapper>
+    </div>
+  );
+}
+export default App;
+
+Wrapper.jsx -
+function Wrapper({ children, color = "green" }) {
+  return (
+    <div
+      style={{
+        color: color,
+        border: "5px Solid Green",
+        width: "300px",
+        margin: "10px",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+export default Wrapper;
+
+You can use props to customize the styles of components dynamically.
+______________________________________________________________________________________________________________________________________________
+
+13. Get Input field Value -
+Create an Input Field in React
+First, you need a simple input field. We’ll also use the useState hook to manage the value typed by the user.
+
+import { useState } from "react";
+function App() {
+const [val, setVal] = useState("Anil Sidhu");
+
+  return (
+    <div>
+      <h1>Get Input Field Value</h1>
+      <input
+        type="text"
+        onChange={(event) => setVal(event.target.value)}
+        placeholder="Enter User Name"
+      />
+      <h1>{val}</h1>
+    </div>
+  );
+}
+export default App;
+
+We define a state variable val using useState.
+The onChange event captures user input and updates the state.
+event.target.value gives us the current value of the input.
+We display the current value in an <h1> element.
+
+How to Clear the Input Field -
+To clear the field visually, we must make it a controlled component by adding the value attribute.
+import { useState } from "react";
+function App() {
+const [val, setVal] = useState("Anil Sidhu");
+return (
+    <div>
+      <h1>Get Input Field Value</h1>
+      <input
+        type="text"
+        value={val} // controlled input
+        onChange={(event) => setVal(event.target.value)}
+        placeholder="Enter User Name"
+      />
+      <h1>{val}</h1>
+      <button onClick={() => setVal("")}>Clear Value</button>
+    </div>
+  );
+}
+export default App;
+
+Use value={val}
+Without the value prop, the input field becomes uncontrolled, and React won't fully manage its value. Adding value={val} ensures the field reflects whatever is in the state — and when we call setVal(""), it resets the input to an empty string.
+__________________________________________________________________________________________________________________________________________________
+
+14. Controlled Component -
+What is a Controlled Component?
+A controlled component is a form input field whose value is controlled by React using state.
+That means:
+The value typed in the input is stored in a useState() variable.
+Whenever the user types something, the state is updated.
+The input field shows the value from the state.
+
+Benefits -
+Single Source of Truth
+Validation and Manipulation Before Submit
+Dynamic Updates Values
+
+How to idenitfy this is a Controlled component -
+Error if we dont use Controlled value properly .
+Make Form get Input field values.
+Display input field values.
+
+Example -
+import { useState } from "react";
+function App() {
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  return (
+    <div>
+      <h1>Controlled Component</h1>
+      <form action="" method="get">
+        <input
+          type="text"
+          onChange={(event) => setName(event.target.value)}
+          placeholder="Enter Name"
+          value={name}
+        />
+        <br />
+        <br />
+        <input
+          type="password"
+          onChange={(event) => setPassword(event.target.value)}
+          placeholder="Enter Password"
+          value={password}
+        />
+        <br />
+        <br />
+        <input
+          type="text"
+          onChange={(event) => setEmail(event.target.value)}
+          placeholder="Enter Email"
+          value={email}
+        />
+        <br />
+        <br />
+	<button>Submit</button>
+        <button
+          onClick={() => {
+            setName("");
+            setEmail("");
+            setPassword("");
+          }}
+        >
+          Clear
+        </button>
+
+        <h1>{name}</h1>
+        <h1>{password}</h1>
+        <h1>{email}</h1>
+      </form>
+    </div>
+  );
+}
+
+Code Explanation (Simple) -
+useState(""): Creates state with empty value
+onChange={(e) => setName(e.target.value)}: Every time user types, the value updates in state
+value={name}: Binds input field to state, so it's a controlled component
+Clear button: Resets all values to empty
+_____________________________________________________________________________________________________________________________________________
+
+Uncontrolled component - 
+-Make Uncontrolled component with query selector.
+-Make Uncontrolled component with useRef.
+In React, an uncontrolled component is a form element (like an <input>, <textarea>, or <select>) that manages its own state internally, instead of relying on React state.
+In simple terms:
+The form element controls itself — React doesn't track or manage its value directly.
+
+import { useRef } from "react";
+function App() {
+  const userRef=useRef();
+  const passwordRef=useRef();
+  const handleForm=(event)=>{
+   event.preventDefault();
+   const user= document.querySelector("#user").value;
+   const password= document.querySelector("#password").value;
+  console.log(user,password);
+}
+  const handleFormRef=(event)=>{
+  event.preventDefault()
+  const user= userRef.current.value
+  const password= passwordRef.current.value
+  console.log("handleFormRef",user,password);
+}
+  return (
+    <>
+     <h1>Uncontrolled Component</h1>
+     <form action="" method="post" onSubmit={handleForm}>
+      <input type="text" id="user" placeholder="enter user name" />
+      <br /><br />
+      <input type="password" id="password" placeholder="enter user password" />
+      <br /><br />
+      <button>
+        Submit
+      </button>
+
+     </form>
+     <hr />
+     <h1>Uncontrolled Component with useRef</h1>
+     <form action="" method="post" onSubmit={handleFormRef}>
+      <input type="text" ref={userRef} id="userRef" placeholder="enter user name" />
+      <br /><br />
+      <input type="password" ref={passwordRef} id="passwordRef" placeholder="enter user password" />
+      <br /><br />
+      <button>
+        Submit with Ref
+      </button>
+      </form>
+    </>
+  )
+}
+export default App;
+________________________________________________________________________________________________________________________________
+
+15. Handle Checkbox in React -
+When you use an input field, you get a single string value. But with checkboxes, you may have multiple values.
+We need to store these values in an array using state. When a checkbox is unchecked, we must remove that value from the array.
+
+Create Skills.jsx -
+function Skills() {
+  return (
+    <div>
+      <h2>Select Your Skills</h2>
+    </div>
+  );
+}
+export default Skills;
+
+Here we created a basic component called Skills and added an h2 heading. Then we exported the component to use it in App.jsx.
+
+Import and Use in App.jsx
+import Skills from "./Skills";
+function App() {
+  return (
+    <div>
+      <h1>Handle Checkbox in React JS</h1>
+      <Skills />
+    </div>
+  );
+}
+We import Skills and use it inside the App component.
+
+Add Checkboxes in Skills.jsx -
+<input type="checkbox" id="php" value="php" />
+<label htmlFor="php">PHP</label>
+
+We use id and htmlFor to connect the label and input.
+value is the skill name we will collect when the checkbox is checked.
+
+Repeat for multiple skills:
+<input type="checkbox" id="js" value="js" />
+<label htmlFor="js">JS</label>
+<br /><br />
+<input type="checkbox" id="node" value="node" />
+<label htmlFor="node">Node</label>
+<br /><br />
+<input type="checkbox" id="java" value="java" />
+<label htmlFor="java">Java</label>
+
+Use State to Store Selected Skills
+const [skills, setSkills] = useState([]);
+We use useState to store selected checkbox values in an array called skills.
+
+Display selected skills:
+<h1>{skills.toString()}</h1>
+
+Create handleSkills() Function -
+const handleSkills = (event) => {
+  console.log(event.target.value, event.target.checked);
+
+  if (event.target.checked) {
+    setSkills([...skills, event.target.value]);
+  } else {
+    setSkills(skills.filter((item) => item !== event.target.value));
+  }
+};
+Explanation:
+event.target.value: gets the value of the checkbox.
+event.target.checked: returns true or false.
+If checked, we add the value using the spread operator:
+setSkills([...skills, event.target.value])
+If unchecked, we remove the value using .filter().
+________________________________________________________________________________________________________________________________
+
+16. Handle Radio Button and Dropdown -
+Radio Button -
+Create Radio Buttons
+<h4>Select Gender</h4>
+<input type="radio" name="gender" id="male" />
+<label htmlFor="male">Male</label>
+<input type="radio" name="gender" id="female" />
+<label htmlFor="female">Female</label>
+
+name="gender" is same in both inputs, so only one can be selected.
+htmlFor="male" connects label to input. Clicking label selects the button.
+
+Add State -
+const [gender, setGender] = useState("female");
+This line stores selected gender in state.
+Default value is "female".
+
+Add onChange and checked -
+<input
+  type="radio"
+  name="gender"
+  id="male"
+  value="male"
+  onChange={(e) => setGender(e.target.value)}
+  checked={gender === "male"}
+/>
+<label htmlFor="male">Male</label>
+
+<input
+  type="radio"
+  name="gender"
+  id="female"
+  value="female"
+  onChange={(e) => setGender(e.target.value)}
+  checked={gender === "female"}
+/>
+<label htmlFor="female">Female</label>
+onChange updates gender in state.
+checked={gender === "male"} means if state is "male", then button is selected.
+
+Dropdown -
+Create Dropdown
+<h2>Select City</h2>
+<select
+  defaultValue="delhi"
+  onChange={(e) => setCity(e.target.value)}
+>
+  <option value="noida">Noida</option>
+  <option value="gurgaon">Gurgaon</option>
+  <option value="delhi">Delhi</option>
+</select>
+defaultValue="delhi" selects Delhi by default.
+onChange stores selected city in state.
+
+State for Dropdown -
+const [city, setCity] = useState("delhi");
+This line stores selected city.
+
+Display Output -
+<h1>Selected Gender: {gender}</h1>
+<h1>Selected City: {city}</h1>
+________________________________________________________________________________________________________________________________________________
+
+17.Loop in JSX with Map Function -
+What is an Array?
+An array is a collection of data. If you have one name, you store it in a variable. But if you have many names, use an array.
+Example:
+const userData = ["Anil", "Sam", "Peter", "Bruce"];
+const collegeData = ["IET", "IIT", "NIT"];
+
+Array of Objects -
+When each user has more details like name, age, email, use array of objects.
+const userData = [
+  {
+    name: "Anil",
+    age: 29,
+    email: "anil@test.com",
+    id: 1,
+  },
+  {
+    name: "Sam",
+    age: 36,
+    email: "sam@test.com",
+    id: 2,
+  },
+  {
+    name: "Peter",
+    age: 20,
+    email: "peter@test.com",
+    id: 3,
+  },
+  {
+    name: "Bruce",
+    age: 50,
+    email: "bruce@test.com",
+    id: 4,
+  },
+];
+
+Make Table in JSX -
+Create a table structure like this:
+<h1>Dummy Data</h1>
+<table border="1">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Age</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Anil</td>
+      <td>anil@test.com</td>
+      <td>29</td>
+    </tr>
+    {/* More rows... */}
+  </tbody>
+</table>
+But instead of repeating rows manually, use .map().
+
+Use map() Function for Looping -
+<div>
+  <h1>Loop in JSX with Map Function</h1>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Age</td>
+      </tr>
+    </thead>
+    <tbody>
+      {userData.map((user) => {
+        return (
+          <tr key={user.id}> {/* key helps React track each row */}
+            <td>{user.id}</td>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            <td>{user.age}</td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
+map() runs a loop on the array.
+It returns one <tr> for each user.
+key={user.id} gives a unique identity to each row.
+________________________________________________________________________________________________________________________________________________
+
+18.Reuse Component in Loop -
+Make a Component
+const User = () => {
+  return (
+    <div>
+      <h1>User Component</h1>
+    </div>
+  );
+};
+export default User;
+
+Apply map() for Looping -
+return (
+  <div>
+    <h1>Reuse Component in Loop</h1>
+    {userData.map((user) => (
+      // render component here
+    ))}
+  </div>
+);
+
+Render Component in Loop -
+{userData.map((user) => (
+  <div key={user.id}> {/* use key to avoid error */}
+    <User />
+  </div>
+))}
+
+Pass Data to Component -
+{userData.map((user) => (
+  <div key={user.id}>
+    <User user={user} />
+  </div>
+))}
+
+Receive Props in User.jsx -
+In User.jsx:
+const User = ({ user }) => {
+  return (
+    <div>
+      <h3>
+        Name: <span style={{ color: "green" }}>{user.name}</span>
+      </h3>
+      <h3>
+        Age: <span style={{ color: "green" }}>{user.age}</span>
+      </h3>
+      <h3>
+        Email: <span style={{ color: "green" }}>{user.email}</span>
+      </h3>
+    </div>
+  );
+};
+export default User;
+Now, the component shows dynamic data using props.
+
+Add Style -
+Wrap the content inside this div:
+<div
+  style={{
+    border: "1px solid green",
+    padding: "10px",
+    margin: "10px",
+    width: "400px",
+    borderRadius: "5px",
+  }}
+>
+{/* content here */}
+</div>
+This adds border, padding, and spacing for better UI.
+_________________________________________________________________________________________________________________________________________
+
+19.Nested Looping in React -
+Array Structure
+You’re using an array of colleges.
+Each college has its own array of students.
+function App() {
+  const collegeData = [
+    {
+      name: "IET Alwer",
+      city: "Alwer",
+      website: "https://www.iet.ac.in/",
+      student: [
+        {
+          name: "Anil sidhu",
+          age: 29,
+          email: "anil@test.com",
+        },
+        {
+          name: "Beter",
+          age: 20,
+          email: "peter@test.com",
+        },
+        {
+          name: "Bruce",
+          age: 25,
+          email: "bruce@test.com",
+        },
+      ],
+    },
+    {
+      name: "IIT Delhi",
+      city: "Delhi",
+      website: "https://www.iit.ac.in/",
+      student: [
+        {
+          name: "Anil sidhu",
+          age: 29,
+          email: "anil@test.com",
+        },
+        {
+          name: "Beter",
+          age: 20,
+          email: "peter@test.com",
+        },
+        {
+          name: "Bruce",
+          age: 25,
+          email: "bruce@test.com",
+        },
+      ],
+    },
+    {
+      name: "KCIET Hisar",
+      city: "Hisar",
+      website: "https://www.kciet.ac.in/",
+      student: [
+        {
+          name: "Anil sidhu",
+          age: 29,
+          email: "anil@test.com",
+        },
+        {
+          name: "Beter",
+          age: 20,
+          email: "peter@test.com",
+        },
+        {
+          name: "Bruce",
+          age: 25,
+          email: "bruce@test.com",
+        },
+      ],
+    },
+  ];
+
+Outer Loop: Loop through colleges -
+ return (
+    <div>
+      <h1>Reuse component in Loop</h1>
+      {collegeData.map((college, index) => (
+        <div key={index}>
+          <College college={college} />
+        </div>
+      ))}
+    </div>
+  );
+}
+Here:
+You loop over the collegeData.
+Pass each college object to College component.
+Use key={index} for unique identification.
+
+Outer Component: College.jsx -
+This component shows the college details and sends the student data to the inner loop.
+import Student from "./Student";
+function college({ college }) {
+  return (
+    <div
+      style={{
+        backgroundColor: "#ccc",
+        padding: "20px",
+        margin: "20px",
+        borderBottom: "2px solid #000",
+        borderRadius: "10px",
+      }}
+    >
+      <h1>Name:{college.name}</h1>
+      <ul>
+        <li>
+          <h3>City:{college.city}</h3>
+        </li>
+        <li>
+          <h3>Website:{college.website}</h3>
+        </li>
+        <li>
+          <Student student={college.student} />
+        </li>
+      </ul>
+    </div>
+  );
+}
+export default college;
+Displays college data
+Sends college.student to the Student component
+
+Inner Loop: Student.jsx -
+This component loops through students for each college.
+function Student({ student }) {
+  return (
+    <div>
+      <h3>Student</h3>
+      {student.map((student) => (
+        <div>
+          <ul>
+            <li>
+              <h4>{student.name}</h4>
+            </li>
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
+export default Student;
+Loops through the student array
+Shows the name of each student
+Summary -
+App.jsx → Loops through colleges using .map()
+College.jsx → Shows each college and sends students to the next component
+Student.jsx → Loops through and displays students
+______________________________________________________________________________________________________________________________________________
+
+20. Hooks -
+What are Hooks?
+In old React version, we were using class-based components.
+Now class-based components are not much used in React.
+So to achieve state, lifecycle, other features in functional components, we use hooks.
+
+Why We Need Hooks?
+To use React features like state and lifecycle methods in functional components.
+
+History of Hooks -
+Hooks were introduced to replace class components with functional components using special functions.
+Some Hook Names -
+useState
+useEffect
+useContext
+useRef
+useReducer
+etc.
+2. use of useEffect -
+Remove side effect inside component
+Remove side effect from outside component
+Use to fetch data
+Can use as life cycle methods
+Can use for DOM manipulation
+
+Basic use of useEffect -
+Prevents extra rendering of the component on state changes.(Very important for interviews)
+Basic Syntax of useEffect:
+useEffect(() => {
+  // your side effect code here
+}, [dependencies]);
+
+Example -
+function callOnce() {
+  console.log("callOnce function called");
+}
+callOnce();
+return (
+  <div>
+    <h1>useEffect Hook</h1>
+    <button onClick={() => setCount(count + 1)}>Count {count}</button>
+  </div>
+);
+Whenever the button is clicked, the count will increase by 1 and callOnce function will be called again and again.
+To control this behavior and run the function only once, we can use the useEffect hook.
+
+useEffect(() => {
+  callOnce(); // only runs once when the component mounts
+}, []);
+Call a function inside useEffect based on a state
+
+function counterFunction() {
+  console.log(counter);
+} // Want this function to be called only when counter updates
+
+useEffect(() => {
+  counterFunction();
+}, [counter]);
+
+Handling Dependencies -
+Call every time -
+useEffect(() => {
+  // called every time component renders
+});
+
+Call only once -
+useEffect(() => {
+  // called only once when component mounts
+}, []);
+
+Call when a single state changes -
+useEffect(() => {
+  // called when state1 changes
+}, [state1]);
+
+
+Call when both states change -
+useEffect(() => {
+  // called when state1 or state2 changes
+}, [state1, state2]);
+
+Call when props change -
+useEffect(() => {
+  // called when prop1 changes
+}, [prop1]);
+
+useEffect(() => {
+  // called when prop2 changes
+}, [prop2]);
+
+Multiple useEffect hooks -
+You can use more than one useEffect in the same component.This helps you separate concerns and run different pieces of 
+logic based on different dependencies.
+______________________________________________________________________________________________________________________________________________
+
+21. Handle Props Side Effect with useEffect in component -
+Make Component -
+First, create a component called Counter.jsx:
+const Counter = () => {
+  return (
+    <div>
+      <h1>Counter Component</h1>
+    </div>
+  );
+};
+export default Counter;
+
+Pass Component in App.jsx -
+Now render this component inside App.jsx:
+<div>
+  <h1>Handle Props Side Effect with useEffect in component</h1>
+  <Counter />
+</div>
+
+Apply useEffect to Handle Side Effects -
+const handleCounter = () => {
+    console.log("handleCounter called");
+  };
+
+  useEffect(() => {
+    handleCounter();
+  }, []);
+Now you will handle side effects in your component using useEffect.
+
+How to Pass Props as Dependency in useEffect -
+ const handleData = () => {
+    console.log("handleData called");
+  };
+
+useEffect(() => {
+    handleData();
+  }, [count, data]);
+______________________________________________________________________________________________________________________________________________
+
+22. Use Effect Hook for Life Cycle Methods in React -
+Human Life Cycle
+Think about the human life cycle:
+Birth (born)
+Grow up
+Death (expire)
+
+React Component Life Cycle -
+Similarly, React components also have a life cycle:
+Mounting → component is created and added to the DOM
+Updating → component is updated (state or props change)
+Unmounting → component is removed from the DOM
+
+Phases of React Component Life Cycle -
+Here are the 3 phases:
+Mounting
+Updating
+Unmounting
+
+How to Handle Life Cycle with useEffect -
+We can handle each life cycle phase using the useEffect hook.
+
+1.Mounting -
+useEffect(() => {
+  // this code will run only when component mounts
+}, []);
+Runs only once, when the component is added to the DOM.
+
+2.Updating -
+useEffect(() => {
+  // this code will run on update
+}, [state1 or props]);
+Runs every time the state or props in dependency array change.
+Example:
+
+useEffect(() => {
+  console.log("update phase only");
+}, [count]);
+This will run every time the count value changes.
+
+3.Unmounting -
+useEffect(() => {
+  return () => {
+    // this code will run on unmount
+  };
+}, []);
+Runs when the component is removed from DOM.
+
+4.Run on Every Life Cycle Event -
+useEffect(() => {
+  // this code will run on every life cycle event (mount + update)
+});
+If you do not pass a dependency array, useEffect will run after every render.
+
+*Unmount Example with Toggle Button
+const [display, setDisplay] = useState(false);
+
+{display ? <Counter count={count} data={data} /> : null}
+
+<button onClick={() => setDisplay(!display)}>Toggle</button>
+When display is true, the Counter component will show.
+When display is false, the Counter component will be removed (unmounted).
+
+Counter.jsx
+useEffect(() => {
+  return () => {
+    console.log("unmounting phase only");
+  };
+}, []);
+When Counter is removed from DOM, this code will run.
+______________________________________________________________________________________________________________________________________________
+
+23. Styling in React JS -
+How many types of styles do we have in React JS?
+
+1.Inline Style -
+Use the style attribute directly on your elements.
+Syntax is a bit different from basic CSS — you need to use an object with camelCase properties.
+Example:
+<div style={{ color: 'blue', fontSize: '16px' }}>Hello World!</div>
+
+2.External Style -
+Create a separate CSS file.
+Import that file into your component.
+Example:
+.container {
+  background-color: lightgray;
+  padding: 20px;
+}
+Then import in your React component:
+import './styles.css';
+
+3.CSS Modules -
+Similar to external CSS files.
+But ensures that styles are locally scoped to a specific component — no global style leakage.
+Example:
+/* MyComponent.module.css */
+.container {
+  background-color: lightgray;
+  padding: 20px;
+}
+Then use in your component:
+import styles from './MyComponent.module.css';
+<div className={styles.container}>Hello World!</div>
+
+4.Styled Components -
+A popular library that allows you to write CSS inside JavaScript components.
+This approach is called CSS-in-JS.
+Example:
+import styled from 'styled-components';
+const Button = styled.button`
+  background-color: ${props => props.primary ? 'blue' : 'gray'};
+  color: white;
+  padding: 10px 20px;
+  border: none;
+`;
+
+5.External CSS Libraries / Frameworks -
+You can also use third-party CSS libraries in your React project:
+Material-UI
+React Bootstrap
+Tailwind CSS
+______________________________________________________________________________________________________________________________________________
+
+24.Inline Style in React -
+In HTML:
+<div style="color:blue; background-color:red;">
+  This is a div with inline styles.
+</div>
+
+In React:
+<div style={{ color: 'red', backgroundColor: 'green' }}>
+  React JS StyleReact JS Course
+</div>
+
+Notes:
+Style is passed as a JavaScript object inside JSX.
+CSS properties must be written in camelCase.
+Use commas, not semicolons, after each property.
+
+How is React inline style different from regular HTML style?
+In HTML: style is a string ("color: red;")
+In React: style is an object ({ color: 'red' })
+Property names use camelCase instead of kebab-case.
+Values are in quotes if they are strings.
+
+Example: User Profile Card with Inline Style
+function App() {
+  return (
+    <div>
+      <h1 style={{ color: "red" }}>Inline Style in React</h1>
+      <div
+        style={{
+          border: "1px solid #ccc",
+          width: "200px",
+          boxShadow: "1px 2px 3px 0px #cccccc57",
+          margin: "10px",
+        }}
+      >
+        <img
+          style={{ width: "200px" }}
+          src="https://www.w3schools.com/howto/img_avatar.png"
+          alt=""
+        />
+        <div style={{ padding: "5px" }}>
+          <h4>Anil Sidhu</h4>
+          <p>Software Developer</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+Make It Reusable with a JS Style Object
+const cardStyle = {
+  border: "1px solid #ccc",
+  width: "200px",
+  boxShadow: "1px 2px 3px 0px #cccccc57",
+  margin: "10px",
+};
+
+const imageStyle = {
+  width: "200px",
+};
+
+const textContainerStyle = {
+  padding: "5px",
+};
+
+Use it in JSX:
+<div style={cardStyle}>
+  <img style={imageStyle} src="..." alt="" />
+  <div style={textContainerStyle}>
+    <h4>Anil Sidhu</h4>
+    <p>Software Developer</p>
+  </div>
+</div>
+
+Create Multiple Cards in the Same Row
+<div style={{ display: "flex", flexWrap: "wrap" }}>
+  <div style={cardStyle}>
+    <img style={imageStyle} src="..." alt="" />
+    <div style={textContainerStyle}>
+      <h4>Anil Sidhu</h4>
+      <p>Software Developer</p>
+    </div>
+  </div>
+
+  <div style={cardStyle}>
+    <img style={imageStyle} src="..." alt="" />
+    <div style={textContainerStyle}>
+      <h4>Anil Sidhu</h4>
+      <p>Software Developer</p>
+    </div>
+  </div>
+</div>
+display: "flex" helps to align cards side by side in the same row.
+______________________________________________________________________________________________________________________________________________
+
+25. Dynamic and Conditional Inline Style -
+We update styles dynamically — add or remove styles — using React state and button clicks.
+Make Button for Dynamic Style
+<button>Grey Theme</button>
+<button>
+  Default Theme
+</button>
+
+Use State for Style Object -
+const [cardStyle, setCardStyle] = useState({
+    border: "1px solid #ccc",
+    width: "200px",
+    boxShadow: "1px 2px 3px 0px #cccccc57",
+    margin: "10px",
+  });
+const [textColor, setTextColor] = useState("black");
+
+Update style on button click -
+<button onClick={() => updateTheme("#ccc  ", "red")}>Grey Theme</button>
+<button onClick={() => updateTheme("white", "black")}>
+  Default Theme
+</button>
+
+const updateTheme = (bgColor, textColor) => {
+    setCardStyle({ ...cardStyle, backgroundColor: bgColor });
+    setTextColor(textColor);
+};
+
+Multiple cards create -
+Create multiple cards like this and apply the updated styles:
+
+Show them in grid form when Click on button -
+Create Button
+<button>Toggle Grid</button>
+
+Define a state -
+const [grid, setGrid] = useState(true);
+condition -
+<div style={{ display: grid ? "flex" : "block", flexWrap: "wrap" }}>
+onClick event -
+<button onClick={() => setGrid(!grid)}>Toggle Grid</button> // when grid is true make it false /
+____________________________________________________________________________________________________________________________________________
+
+26. External Style -
+Create a CSS File -
+Create a folder named css inside src, and then add a file named style.css:
+src/css/style.css
+
+Write Styles in style.css -
+.heading {
+  color: green;
+}
+
+.img-style {
+  width: 200px;
+}
+
+.user-card {
+  margin: 10px;
+  width: 200px;
+  border: 1px solid black;
+  box-shadow: 1px 1px 3px 1px #ddd;
+}
+
+.text-wrap {
+  padding: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+Import CSS File in Your React Component -
+To apply external styles in React, import the CSS file at the top of your component like this:
+import "./css/style.css";
+Use className instead of class for JSX:
+<h1 className="heading">External Style</h1>
+
+Create a Simple Card with External Style -
+Now we will create multiple user cards using the external CSS classes.
+<div>
+  <h1 className="heading">External Style</h1>
+  <div>
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="" />
+    <div>
+      <h4>Anil Sidhu</h4>
+      <p>Software Developer</p>
+    </div>
+  </div>
+</div>
+
+Full React Component with External Styling -
+Below is the full React component that shows multiple user cards with external styles applied. (Code untouched)
+import "./css/style.css"; // Importing CSS file for styling
+function App() {
+  return (
+    <>
+      <h1 className="heading">External Style</h1>
+      <div className="container">
+        {/* Repeated cards */}
+        <div className="user-card">
+          <div>
+            <img
+              className="img-style"
+              src="https://www.w3schools.com/howto/img_avatar.png"
+              alt=""
+            />
+            <div className="text-wrap">
+              <h4>Anil Sidhu</h4>
+              <p>Software Developer</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Copy this div to make more cards */}
+        {/* ...more cards */}
+      </div>
+    </>
+  );
+}
+export default App;
+If you want to apply styling globally to your app, you can also import the CSS file in main.js instead of App.js.
+import './css/style.css';
+This will apply styles across your entire project.
+____________________________________________________________________________________________________________________________________________
+
+27. Style with CSS Modules -
+Why need css module -
+Make css module file
+Write module css
+Import css in component
+
+﻿CSS Modules in React are used to solve a common problem in frontend development: CSS class name collisions and global scope pollution. Here's why you might want to use CSS Modules in a React project:
+
+UserProfile.modue.css file code -
+.heading{
+    color: red;
+}
+
+.img {
+    width: 200px;
+}
+
+.card{
+    border: 1px solid #ddd;
+    width: 200px;
+    margin: 10px;
+    box-shadow: 1px 1px 3px 1px #ddddddb8;
+}
+
+.textWrap{
+    padding: 10px;
+}
+______________________________________________________________________________________________________________________________________________
+
+28. Styled components -
+What is Styled component
+Install styled component package
+Import and Apply Styled component
+Write style with styled component
+
+Styled Components is a CSS-in-JS library that allows you to write actual CSS code inside your JavaScript or TypeScript files, scoped to individual components
+import styled from "styled-components"
+function App() {
+// const Heading =styled.h1`
+// color:red;
+// border:1px solid green;
+// border-radius:5px;
+// margin:20px;
+// padding:20px
+// `
+const Heading=styled.h1({
+  color:'red',
+  border:'1px solid green',
+  borderRadius:'5px',
+  margin:'20px',
+  padding:'20px'
+})
+const StyleBtn=styled.button`
+color:red;
+width:130px;
+height:40px;
+margin:20px
+`
+return (
+    <>
+      <h1>Styled Component with React js</h1>
+      <Heading>Hello Heading</Heading>
+      <Heading>Hello Heading 2</Heading>
+      <Heading>Hello Heading 3</Heading>
+      <Heading>Hello Heading 4</Heading>
+      <StyleBtn>Login</StyleBtn>
+      <StyleBtn>Signup</StyleBtn>
+      <StyleBtn>Bakc</StyleBtn>
+      <StyleBtn>Login</StyleBtn>
+
+
+    </>
+  )
+}
+export default App;
+______________________________________________________________________________________________________________________________________________
+
+29. Add Bootstrap with React js -
+Bootstrap is a popular, open-source CSS  frameworkCSS framework developed by Twitter for building responsive and mobile-first websites quickly and consistently.It provides a set of predefined CSS classes, JavaScript components, and a grid system that helps developers design web pages without writing a lot of custom CSS or JavaScript.
+
+import { Button } from "react-bootstrap"
+import { Alert,Navbar,Container,NavDropdown,Nav } from "react-bootstrap"
+function App() {
+return (
+    <>
+    {/*  */}
+<Navbar expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">Link</Nav.Link>
+            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                Another action
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">
+                Separated link
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+{/*  */}
+      <h1>Add Bootstrap in React js </h1>
+     <Alert variant="success" >Hello, BT installed</Alert>
+	<Button onClick={()=>alert("Bootstrap Button")}  variant="danger">Bootstrap Button</Button>
+      <Button variant="success">Ok</Button>
+      <Button variant="warning">Ok</Button>
+      <button  onClick={()=>alert("Simple Button")} >Simple Button</button>
+</>
+  )
+}
+export default App;
+_______________________________________________________________________________________________________________________________________________
+
+30. useRef Hook -
+useRef hook in React is used to create a mutable reference that:
+Persists across renders -
+Does not trigger re-renders when changed
+Can reference a DOM element directly
+
+import { useState, useEffect } from 'react';
+import './App.css';
+
+function App() {
+  const [counter, setCounter] = useState(0);
+  const [data, setData] = useState(0);
+
+  useEffect(() => {
+    counterFunction();
+  }, [counter]);
+
+  useEffect(() => {
+    callOnce();   // FIX: function must be invoked
+  }, []);
+
+  function counterFunction() {
+    console.log("counterFunction", counter);
+  }
+
+  function callOnce() {
+    console.log("callOnce function called");
+  }
+
+  return (
+    <div>
+      <h1>useEffect Hook</h1>
+      <button onClick={() => setCounter(counter + 1)}>
+        Counter {counter}
+      </button>
+      <button onClick={() => setData(data + 1)}>
+        Data {data}
+      </button>
+    </div>
+  );
+}
+
+export default App;
+_______________________________________________________________________________________________________________________________________________
+
+31.Forward Ref -
+-Implement ForwardRef before react 19 version
+-Implement ForwardRef in react 19
+forwardRef in React is a utility function that allows a parent component to "forward" a ref it created to a child component, specifically to a DOM node or another component instance inside that child component.
+
+import { useRef } from "react"
+import UserInput from "./UserInput";
+function App() {
+  const inputRef=useRef(null)
+  const updateInput=()=>{
+   inputRef.current.value=1000;
+   inputRef.current.focus();
+   inputRef.current.style.color="red"
+}
+  return (
+    <>
+      <h1>Forward Ref</h1>
+      <UserInput ref={inputRef} />
+      <button onClick={updateInput}>Update Input field</button>
+  </>
+  )
+}
+export default App
+
+user
+// import { forwardRef } from "react"
+// const UserInput=(props,ref)=>{
+//     return(<div>
+//         <input type="text" ref={ref}  />
+//         </div>)
+// }
+// export default forwardRef(UserInput);
+const UserInput=(props)=>{
+    return(<div>
+        <input type="text" ref={props.ref} />
+    </div>)
+}
+export default UserInput;
+____________________________________________________________________________________________________________________________________________
+
+32.useFormStatus Hook -
+The useFormStatus hook in React provides information about the submission status of a form. It's particularly useful for displaying UI elements like loading indicators or disabling submit buttons while the form is being processed, enhancing the user experience during form submissions.
+
+import {useFormStatus} from 'react-dom'
+function App() {
+    const handleSubmit=async ()=>{
+    await new Promise(res=>setTimeout(res,5000));
+    console.log("submit");
+    }
+    function CustomerForm(){
+    const {pending,data,method} =useFormStatus();
+    console.log(pending,data,method);
+    return(
+      <div>
+        <input type="text" placeholder="Enter Name" />
+      <br />
+      <br />
+      <input type="text" placeholder="Enter Password" />
+      <br />
+      <br />
+      <button disabled={pending}>{pending?'Submitting...':'Submit'}</button>
+      </div>
+    )
+  }
+  return (
+   <div>
+    <h1>useFormStatus Hook in React js 19</h1>
+    <form action={handleSubmit} method='post'>
+      <CustomerForm />
+    </form>
+   </div>
+);
+}
+export default App;
+____________________________________________________________________________________________________________________________________________
+
+33.useTransition Hook -
+use Transition is a React Hook introduced in React 18 as part of the Concurrent Features. It's used to manage transitions, i.e., updates that can be deferred so they don’t block more urgent UI updates like typing or clicking.
+
+import { useState, useTransition } from "react";
+function App() {
+  const [pending,startTransition]=useTransition();
+const handleButton= ()=>{
+startTransition(async ()=>{
+   await new Promise(res=>setTimeout(res,5000))
+  })
+}
+return (
+   <div>
+    <h1>useTransition Hook in React js 19</h1>
+    {
+      pending?
+      <img style={{width:"100px"}} src="https://res.cloudinary.com/bytesizedpieces/image/upload/v1656084931/article/a-how-to-guide-on-making-an-animated-loading-image-for-a-website/animated_loader_gif_n6b5x0.gif" alt="" srcset="" />
+      :null
+    }
+    <button  disabled={pending} onClick={handleButton} >Click</button>
+</div>
+);
+}
+export default App;
+____________________________________________________________________________________________________________________________________________
+
+34.Keep Your Components Pure -
+In JavaScript, a pure function is a function that satisfies two key conditions:
+1. Deterministic (Same input → Same output)
+Given the same arguments, a pure function always returns the same result.
+
+✅ 2. No Side Effects
+A pure function doesn’t change anything outside its scope, like:
+-Modifying global variables
+-Changing parameters
+-Updating the DOM
+-Making API calls or reading files
+import { useRef } from "react"
+import UserInput from "./UserInput";Programming
+function App() {
+  const inputRef=useRef(null)
+  const updateInput=()=>{
+   inputRef.current.value=1000;
+   inputRef.current.focus();
+   inputRef.current.style.color="red"
+}
+  return (
+    <>
+      <h1>Forward Ref</h1>
+      <UserInput ref={inputRef} />
+      <button onClick={updateInput}>Update Input field</button>
+  
+    </>
+  )
+}
+export default App;
+____________________________________________________________________________________________________________________________________________
+
+35.Derived State -
+Derived state is not directly stored using useState. Instead, it is calculated based on:
+props
+other state values
+So instead of duplicating data in state (which can lead to bugs), you derive it when needed.
+
+import { useState } from "react";
+function App() {
+  const [users,setUsers]=useState([]);
+  const [user,setUser]=useState('');
+  const handleAddUsers=()=>{
+    setUsers([...users,user])
+  }
+const total=users.length;
+const last= users[users.length-1];
+const unique= [...new Set(users)].length
+
+  return (
+    <div>
+      <h2>Total User : {total} </h2>
+      <h2>Last User : {last}</h2>
+      <h2>Unique Total User : {unique}</h2>
+<input type="text" onChange={(event)=>setUser(event.target.value)} placeholder="add new user" />
+    <button onClick={handleAddUsers} >Add User</button>
+    {
+      users.map((item,index)=>(
+        <h4 key={index}>{item}</h4>
+      ))
+    }
+    </div>
+);
+}
+export default App;
+____________________________________________________________________________________________________________________________________________
+
+36.Lifting State Up -
+In React, "Lifting State Up" is the process of moving state to the nearest common ancestor of two or more components 
+that need to share or sync that state.
+
+import { useState } from "react"
+import AddUser from "./AddUser";
+import DisplayUser from "./DisplayUser";function App() {
+  const [user,setUser]=useState('')
+  return (
+    <div>
+     <AddUser setUser={setUser} />
+     <DisplayUser  user={user}/>
+    </div>
+
+  );
+}
+export default App;
+
+function AddUser({setUser}){
+   
+    return(
+        <div>
+            <h1>Add User </h1>
+            <input type="text" onChange={(event)=>setUser(event.target.value)} placeholder="Enter User name" />
+            <hr />
+        </div>
+    )
+}
+export default AddUser;
+
+function DisplayUser({user}){
+    return(
+        <div>
+           <h3>{user}</h3>
+        </div>
+    )
+}
+export default DisplayUser;
+____________________________________________________________________________________________________________________________________________
+
+37.Updating Objects in State -
+import { useState } from "react";
+export default function App() {
+const [data, setData] = useState({
+    name: 'Anil',
+    address: {
+      city: 'Delhi',
+      country: 'India'
+    }
+  })
+const handleName = (val) => {
+data.name = val
+setData({ ...data })
+}
+  const handleCity = (city) => {
+    data.address.city = city;
+    console.log(data);
+    setData({ ...data, address: { ...data.address, city } })
+}
+  return (
+    <div>
+      <h1>Updating Objects in State</h1>
+	<input type="text" placeholder="update name"
+        onChange={(event) => handleName(event.target.value)} />
+      <input type="text" placeholder="update city"
+        onChange={(event) => handleCity(event.target.value)} />
+      <h2>Name :{data.name}</h2>
+      <h2>City :{data.address.city}</h2>
+      <h2>Country :{data.address.country}</h2>
+</div>
+  );
+}
+____________________________________________________________________________________________________________________________________________
+
+38.Updating Array in State -
+import { useState } from "react";
+export default function App() {
+const [data,setData]=useState([
+  'anil','sam','peter','tony'
+])
+const [dataDetails,setDataDetails]=useState([
+  { name:'anil',age:'29'},
+  { name:'sam',age:'25'},
+  { name:'peter',age:'33'},
+])
+const handleUser=(name)=>{
+data[data.length-1]=name;
+ console.log(data);
+ setData([...data])
+}
+const handleAge=(age)=>{
+dataDetails[dataDetails.length-1].age=age;
+  console.log(dataDetails);
+  setDataDetails([...dataDetails])
+}
+  return (
+    <div>
+      <h1>Updating Array in State</h1>
+      <input type="text" placeholder="enter last user name"
+      onChange={(e)=>handleUser(e.target.value)}
+       />
+      {
+        data.map((item,index)=>(
+          <h3 key={index}>{item}</h3>
+        ))
+      }
+     <hr />
+
+     <input type="text" placeholder="enter last user age"
+      onChange={(e)=>handleAge(e.target.value)}
+       />
+     {
+      dataDetails.map((item,index)=>(
+        <h4 key={index}>{item.name}, {item.age}</h4>
+      ))
+     }
+    </div>
+  );
+}
+____________________________________________________________________________________________________________________________________________
+
+39.useActionState Hook -
+The useActionState Hook in React facilitates state updates based on the outcome of an action, particularly useful in scenarios involving form submissions or other server-side operations. This hook is designed to streamline the management of state related to actions, especially when interacting with React Server Components. 
+It uses total three types of action-
+
+const[data,action,pending]=useActionstate(handleSubmit,undefined)
+=> action - It is used inside form
+=> handleSubmit - It is function which is called
+=> undefined - initial value
+
+handleSubmit(previousData, formData) => It uses total 2 parameters
+
+
+import { useActionState } from 'react'
+export default function App() {
+const handleSubmit = async (previousData, formData) => {
+    let name = formData.get('name');
+    let password = formData.get('password');
+await new Promise(res => setTimeout(res, 2000))
+    // console.log("handleSubmit called",name,password);
+    if (name && password) {
+      return { message: 'Data Submitted', name, password }
+    } else {
+      return { error: 'Failed to Submit. Enter proper data', name, password }
+    }
+}
+  const [data, action, pending] = useActionState(handleSubmit, undefined)
+  console.log(data);
+return (
+    <div>
+      <h1>useActionState Hook in React js</h1>
+      <form action={action}>
+        <input defaultValue={data?.name} type="text" placeholder="enter name" name="name" />
+        <br /><br />
+        <input defaultValue={data?.password} type="password" placeholder="enter password" name="password" />
+        <br /><br />
+        <button disabled={pending} >Submit data</button>
+        <br />
+
+      </form>
+      {
+        data?.error && <span style={{ color: 'red' }}>{data?.error}</span>
+      }
+      {
+        data?.message && <span style={{ color: 'green' }}>{data?.message}</span>
+      }
+<h3>Name : {data?.name}</h3>
+      <h3>Password : {data?.password}</h3>
+</div>
+  );
+}
+____________________________________________________________________________________________________________________________________________
+
+40.useId Hook -
+The useId hook in React is a tool for generating unique IDs within a component. It's particularly useful for tasks like associating labels with form inputs or handling dynamic content where unique identifiers are needed. React 18 introduced useId to ensure IDs are consistent across server and client rendering, simplifying accessibility and dynamic UI management.
+
+import { useId } from "react"
+export default function App() {
+ return(
+  <div>
+<UserForm />
+<hr />
+<UserForm />
+
+  </div>
+)
+}
+function UserForm() {
+  const user =useId();
+return(
+  <div>
+ <form action="">
+  <label htmlFor={user+"name"}>Enter User Name</label>
+  <input id={user+"name"} type="text" placeholder="enter name" />
+  <br /><br />
+  <label htmlFor={user+"password"}>Enter User password</label>
+  <input id={user+"password"} type="text" placeholder="enter password" />
+  <br /><br />
+  <label htmlFor={user+"skills"}>Enter User Skills</label>
+  <input id={user+"skills"} type="text" placeholder="enter skills" />
+
+  <br /><br />
+  <input id={user+"terms"} type="checkbox" placeholder="enter skills" />
+  <label htmlFor={user+"terms"}>Terms and Condition</label>
+</form>
+</div>
+)
+}
+____________________________________________________________________________________________________________________________________________
+
+41.Fragment -
+Fragment is a feature that allows you to group a list of children elements without adding extra nodes to the DOM (Document Object Model). 
+It is used to remove extra parent elements.
+
+Syntax for fragment - 
+<Fragment></Fragment> or <></>
+
+import { Fragment } from "react";
+export default function App() {
+  return (
+    <>
+      <Data />
+      <Data />
+      <Data />
+      <Data />
+      <Data />
+    </>
+  );
+}
+function Data() {
+  return (
+    <div>
+      <h1>Fragment in React js</h1>
+      <h1>Fragment in React js</h1>
+    </div>
+  );
+} 
+____________________________________________________________________________________________________________________________________________
+
+42.Rules for React js Hooks -
+Rules - 
+Start with use_____
+1.useState
+2.useEffect
+3.useRef
+
+export default function App() 
+const [user,setUser] = useState(); //correct
+  if (condition) {
+    const [data,setData] = useState(); // not correct
+  }
+  return (
+   <div>
+    <h1>Hook Rules in React js</h1>
+   </div>
+)
+}
+🔴 Do not call Hooks inside conditions or loops.
+🔴 Do not call Hooks after a conditional return statement.
+🔴 Do not call Hooks in event handlers.
+🔴 Do not call Hooks in class components.
+🔴 Do not call Hooks inside try/catch/finally blocks.
+Don’t call Hooks from regular JavaScript functions.
+Instead, you can:
+✅ Call Hooks from React function components.
+✅ Call Hooks from custom Hooks.
+
+function FriendList() {
+const [onlineStatus, setOnlineStatus] = useOnlineStatus(); //
+}
+function setOnlineStatus() { //Not a component or custom Hook!
+}
+const [onlineStatus, setOnlineStatus] = useOnlineStatus();
+Note -
+Custom Hooks may call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be 
+called while a function component is rendering.
+____________________________________________________________________________________________________________________________________________
+
+43.Context API -
+create Context : To initiate Context API.
+Provider : use for update or provide data.
+use Context : get data from context api.
+Context API allows you to create global variables that can be consumed across the component tree, an alternative 
+to passing props through multiple levels.
+
+import { useState } from "react";
+import College from "./College";
+import { SubjectContext } from "./ContextData";
+export default function App() {
+  const [subject,setSubject]=useState('')
+  return (
+    <div style={{backgroundColor:'yellow', padding:10}}>
+     <SubjectContext.Provider value={subject}>
+      <select value={subject} onChange={(event)=>setSubject(event.target.value)}>
+        <option value="">Select Subject</option>
+        <option value="Maths">Maths</option>
+        <option value="History">History</option>
+        <option value="English">English</option>
+
+      </select>
+     <h1>Context API</h1>
+     <button onClick={()=>setSubject('')} >Clear Subject</button>
+     <College />
+     </SubjectContext.Provider>
+
+    </div>
+  )
+}
+import { createContext } from "react";
+export const SubjectContext=createContext("Maths")
+import ClassComponent from "./ClassComponent";
+export default function College() {
+    return (
+      <div  style={{backgroundColor:'orange', padding:10}}>
+        <h1>College Component</h1>
+        <ClassComponent />
+      </div>
+    )
+    }
+import Student from "./Student";
+export default function ClassComponent() {
+    return (
+      <div  style={{backgroundColor:'skyblue', padding:10}}>
+        <h1>ClassComponent Component</h1>
+        <Student />
+      </div>
+    )
+    }
+import { SubjectContext } from "./ContextData";
+import Subject from "./Subject";
+export default function Student() {
+    return (
+      <div  style={{backgroundColor:'green', padding:10}}>
+        <h1>Student Component</h1>
+        <Subject />
+      </div>
+    )
+    }
+_______________________________________________________________________________________________________________________________________
+
+44.Custom Hooks -
+A Custom Hook is just a JavaScript function that starts with the word use and allows you to reuse stateful logic between components.
+Instead of writing the same logic in multiple components, you can extract it into a custom hook and use it wherever needed.
+
+export default function App() {
+function Child(){
+    return <h1>Child Component</h1>
+  }
+return (
+    <div>
+     <h1>Parent component</h1>
+     <Child />Computers & Electronics
+    </div>
+  )
+}
+import { useState } from "react";
+const useToggle=(defaultVal)=>{
+const [value,setValue]=useState(defaultVal);
+function toggleValue(val){
+console.log(val);
+    if(typeof val!='boolean'){
+        console.log("if");
+        setValue(!value)
+    }else{
+        console.log("else");
+        setValue(val)
+    }
+}
+return [value,toggleValue];
+}
+export default useToggle;
+_______________________________________________________________________________________________________________________________________
+
+45.Router -
+React Router is a standard library for routing in React applications.
+It allows you to create single-page applications (SPA) with multiple views while keeping the app fast and without refreshing the page.
+We have to use always library installation while working with React from react router website.
+website - https://reactrouter.com/home
+
+import About from "./About";
+export default function App() {
+return (
+    <div>
+    <NavLink to="/">Home</NavLink>
+    <NavLink to="/about">About</NavLink>
+<Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+</Routes>
+</div>
+  )
+}
+export default function Home() {
+return (
+    <div>
+     <h1>Home</h1>
+   </div>
+  )
+}
+export default function About() {
+return (
+    <div>
+     <h1>About</h1>
+   </div>
+  )
+}
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import { BrowserRouter, Routes, Route } from "react-router";
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+<BrowserRouter>
+    <App />
+  </BrowserRouter>
+  </StrictMode>,
+)
+_______________________________________________________________________________________________________________________________________
+
+46. Basic Routing | BrowserRouter | Routes | Link -
+BrowserRouter:- This component enables client-side routing using the browser's history API. client side routing enabling means it loads webpage 
+every time. 
+e.g. On react website it do not refresh page when we open the new option. But on the router react page it will refreshes the page everytime.
+This is called client side enabling.
+
+Routes:- It's responsible for rendering the appropriate component based on the current URL. It includes all pages as component.
+
+Route:- Each Route component defines a path and the corresponding component to render when that path is matched. It make component as page.
+Link:- A link for navigate from 1 page to other page
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import {BrowserRouter} from 'react-router'
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+)
+
+import { Route, Routes } from 'react-router'
+import Home from './Home'
+import About from './About'
+import Login from './Login'
+import NavBar from './NavBar'Networking
+function App() {
+return (
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+     </Routes>
+    </>
+  )
+}
+export default App;
+
+export default function Home(){
+    return<h1>Home Page</h1>
+}
+
+export default function Login(){
+    return<h1>Login Page</h1>
+}
+
+export default function About(){
+    return<h1>About Page</h1>
+}
+_______________________________________________________________________________________________________________________________________
+
+47.Make Navbar and Header with React router 7 -
+import { Link } from "react-router";
+import './header.css'
+export default function NavBar() {
+    return <div className="header">
+        <div>
+            <Link className="link" to={"/"}><h2>Logo</h2></Link>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <Link className="link" to="/">Home</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/login">Login</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/about">About</Link>
+                </li>
+               
+            </ul>
+        </div>
+    </div>
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e1caca;
+    padding: 10px;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.header ul {
+    display: flex;
+    list-style-type: none;
+    margin: auto;
+    justify-content: space-around;
+    width: 200px;
+}
+.header ul li{
+    padding: 10px;
+}
+.header .link h2{
+    margin: 0;
+}
+.header .link{
+    text-decoration: none;
+    font-size: 20px;
+}
+_______________________________________________________________________________________________________________________________________
+
+48.Page not found and 404 Page and Redirection -
+A 404 page is a web page shown to users when the page they are trying to visit cannot be found on the server.
+Here /* means apart from the existing pages in code other going to display.
+
+import { Navigate, Route, Routes } from 'react-router'
+import Home from './Home'
+import About from './About'
+import Login from './Login'
+import NavBar from './NavBar'
+import PageNotFound from './PageNotFound'
+import College from './College'
+import Student from './Student'
+import Department from './Department'
+import Details from './Details'
+function App() {
+return (
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/college" element={<College />}>
+        <Route path='student' element={<Student />} />
+        <Route path='department' element={<Department />} />
+        <Route path='detail' element={<Details />} />
+
+        </Route>
+
+        {/* <Route path='/*' element={<PageNotFound />} /> */}
+        <Route  path='/*' element={<Navigate  to="/" />} />
+     </Routes>
+    </>
+  )
+}
+
+export default App;
+
+import { Link } from "react-router";
+export default function PageNotFound(){
+    return(
+        <div style={{textAlign:'center'}}>
+            <h1>Page Not Found</h1>
+           <div>
+           <Link to="/">Go to Home Page</Link>
+           </div>
+            <img style={{width:"60%"}} src="https://admiral.digital/wp-content/uploads/2023/08/404_page-not-found.png" alt="" />
+        </div>
+    )
+}
+_______________________________________________________________________________________________________________________________________
+
+49.Nested Routing -
+In React JS, especially when using React Router, Nested Navigation (or Nested Routes) means placing routes inside other routes, so that a parent component controls the layout and child components render inside it.
+
+In short we can say, when we create nav bar then under that nav bar we have another navigation bar is present. This is nested routing.
+<outlet/> - This displays child components present in parent component.
+
+import { Link, NavLink, Outlet } from "react-router";
+export default function College(){
+    return<div  className="college" style={{textAlign:'center'}}>
+        <h1>College Page</h1>
+        <NavLink className="link" to="student">Student</NavLink>
+        <NavLink className="link" to="department">Departments</NavLink>
+        <NavLink className="link" to="detail">College Details</NavLink>
+        <Outlet />
+</div>
+}
+export default function Department(){
+    return<div >
+        <h1>Department Page</h1>
+        
+    </div>
+}
+export default function Details(){
+    return<div >
+        <h1>Detail Page</h1>
+        </div>
+}
+export default function Student(){
+    return<div >
+        <h1>Student Page</h1>
+        </div>
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e1caca;
+    padding: 10px;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.header ul {
+    display: flex;
+    list-style-type: none;
+    margin: auto;
+    justify-content: space-around;
+    width: 300px;
+}
+.header ul li{
+    padding: 10px;
+}
+.header .link h2{
+    margin: 0;
+}
+.header .link{
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.college .link{
+    text-decoration: none;
+    font-size: 20px;
+    margin: 10px;
+}
+___________________________________________________________________________________________________________________________________________
+
+50.Layout and Index Routes -
+In React JS, especially when using React Router (v6 and above), Layout Routes are routes that share a common UI layout across multiple child routes.
+Index route is used to show by default any page inside nav bar under nav bar.
+e.g. suppose we have nav bar and it includes Home, About, College. Inside College we have again one nav bar is present which includes Student,
+Department and Details. So, to show by default any page (student page, Department page, Details page) Index is used.
+
+import { Navigate, Route, Routes } from 'react-router'
+import Home from './Home'
+import About from './About'
+import Login from './Login'
+import NavBar from './NavBar'
+import PageNotFound from './PageNotFound'
+import College from './College'
+import Student from './Student'
+import Department from './Department'
+import Details from './Details'
+function App() {
+return (
+    <>
+      {/* <NavBar /> */}
+      <Routes>
+<Route element={<NavBar />}>
+          <Route path="/" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
+<Route path="/college" element={<College />}>
+          <Route index element={<Student />} />
+          <Route path='department' element={<Department />} />
+          <Route path='detail' element={<Details />} />
+</Route>
+{/* <Route path='/*' element={<PageNotFound />} /> */}
+        <Route path='/*' element={<Navigate to="/" />} />
+</Routes>
+    </>
+  )
+}
+export default App
+
+import { Link, Outlet } from "react-router";
+import './header.css'
+export default function NavBar() {
+    return<div>
+         <div className="header">
+        <div>
+            <Link className="link" to={"/"}><h2>Logo</h2></Link>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <Link className="link" to="/">Home</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/login">Login</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/about">About</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/college">College</Link>
+                </li>
+               </ul>
+        </div>
+       </div>
+    <Outlet />
+    </div>
+}
+
+import { Link, NavLink, Outlet } from "react-router";
+
+export default function College(){
+    return<div  className="college" style={{textAlign:'center'}}>
+        <h1>College Page</h1>
+        <h3><Link to="/">Go Back to Home</Link></h3>
+        <NavLink className="link" to="">Student</NavLink>
+        <NavLink className="link" to="department">Departments</NavLink>
+        <NavLink className="link" to="detail">College Details</NavLink>
+        <Outlet />
+
+    </div>
+}
+______________________________________________________________________________________________________________________________________
+
+51.Route Prefixes -
+Prefixes are the words which we can use before any word. e.g. in/user/Login
+Here, in,user are prefixes used.
+
+import { Navigate, Route, Routes } from 'react-router'
+import Home from './Home'
+import About from './About'
+import Login from './Login'
+import NavBar from './NavBar'
+import PageNotFound from './PageNotFound'
+import College from './College'
+import Student from './Student'
+import Department from './Department'
+import Details from './Details'
+function App() {
+return (
+    <>
+      {/* <NavBar /> */}
+      <Routes>
+<Route element={<NavBar />}>
+          <Route path="/" element={<Home />} />
+         <Route path='in'>
+         <Route path='/in/user'>
+         <Route path="/in/user/login" element={<Login />} />
+         <Route path="/in/user/about" element={<About />} />
+         </Route>
+         </Route>
+</Route>
+<Route path="/college" element={<College />}>
+          <Route index element={<Student />} />
+          <Route path='department' element={<Department />} />
+          <Route path='detail' element={<Details />} />
+</Route>
+<Route path='/*' element={<PageNotFound />} />
+        {/* <Route path='/*' element={<Navigate to="/" />} /> */}
+</Routes>
+    </>
+  )
+}
+export default App;
+
+import { Link, Outlet } from "react-router";
+import './header.css'
+export default function NavBar() {
+    return<div>
+         <div className="header">
+        <div>
+            <Link className="link" to={"/"}><h2>Logo</h2></Link>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <Link className="link" to="/">Home</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/in/user/login">Login</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/in/user/about">About</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/college">College</Link>
+                </li>
+               
+            </ul>
+        </div>
+       
+    </div>
+    <Outlet />
+    </div>
+}
+__________________________________________________________________________________________________________________________________________
+
+52. Dynamic Route -
+Dynamic Routes are routes whose path contains a variable (parameter) instead of being fixed.
+This allows you to create pages that can handle different values dynamically (like product details, user profiles, blog posts, etc.).
+e.g.Suppose we have users on nav bar and when we click on that it will open many users list. Under this it will have users. And it will have all details like name,Id,Profile picture,skills etc.
+
+Note - We pass Id in url by using UseParams hook in react.Also we can pass multiple Ids.
+
+import { Navigate, Route, Router, Routes } from 'react-router'
+import Home from './Home'
+import About from './About'
+import Login from './Login'
+import NavBar from './NavBar'
+import PageNotFound from './PageNotFound'
+import College from './College'
+import Student from './Student'
+import Department from './Department'
+import Details from './Details'
+import UserList from './UserList'
+import UserDetail from './UserDetails'
+function App() {
+return (
+    <>
+      {/* <NavBar /> */}
+      <Routes>
+<Route element={<NavBar />}>
+          <Route path="/" element={<Home />} />
+          <Route path='/users' element={<UserList />} />
+          <Route path='/users/:id' element={<UserDetail />} />
+         <Route path='in'>
+         <Route path='/in/user'>
+         <Route path="/in/user/login" element={<Login />} />
+         <Route path="/in/user/about" element={<About />} />
+         </Route>
+         </Route>
+</Route>
+<Route path="/college" element={<College />}>
+          <Route index element={<Student />} />
+          <Route path='department' element={<Department />} />
+          <Route path='detail' element={<Details />} />
+</Route>
+<Route path='/*' element={<PageNotFound />} />
+        {/* <Route path='/*' element={<Navigate to="/" />} /> */}
+</Routes>
+    </>
+  )
+}
+export default App;
+
+import { Link, Outlet } from "react-router";
+import './header.css'
+export default function NavBar() {
+    return<div>
+         <div className="header">
+        <div>
+            <Link className="link" to={"/"}><h2>Logo</h2></Link>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <Link className="link" to="/">Home</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/in/user/login">Login</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/in/user/about">About</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/college">College</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/users">Users</Link>
+                </li>
+               
+            </ul>
+        </div>
+       </div>
+    <Outlet />
+    </div>
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e1caca;
+    padding: 10px;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.header ul {
+    display: flex;
+    list-style-type: none;
+    margin: auto;
+    justify-content: space-around;
+    width: 350px;
+}
+.header ul li{
+    padding: 10px;
+}
+.header .link h2{
+    margin: 0;
+}
+.header .link{
+    text-decoration: none;
+    font-size: 20px;
+}
+.college .link{
+    text-decoration: none;
+    font-size: 20px;
+    margin: 10px;
+}
+
+import { Link } from "react-router"
+export default function UserList() {
+    const userData = [
+        { id: 1, name: 'Anil' },
+        { id: 2, name: 'Sam' },
+        { id: 3, name: 'Sidhu' },
+        { id: 4, name: 'Peter' },
+        { id: 5, name: 'Bruce' },
+        { id: 6, name: 'Tony' },
+]
+    return <div style={{ marginLeft: 20 }} >
+        <h1>User List Page</h1>
+        {
+            userData.map((item) => (
+                <div>
+                    <h4><Link to={"/users/"+item.id}  >{item.name}</Link></h4>
+                </div>
+            ))
+        }
+</div>
+}
+
+import { Link, useParams } from "react-router"
+export default function UserDetail() {
+const paramsData=useParams();
+    console.log(paramsData.id);
+return <div style={{ marginLeft: 20 }} >
+        <h1>User Detail Page</h1>
+        <h2>User id is :{paramsData.id}</h2>
+        <h3><Link to="/users">Back</Link></h3>
+    </div>
+}
+export default function Student(){
+    return<div >
+        <h1>Student Page</h1>
+        </div>
+}
+__________________________________________________________________________________________________________________________________________
+
+53.Optional Segment -
+In React Router v6.4+, an optional segment means a part of the route path that is not always required in the URL.
+It lets you match routes with or without a certain parameter or path segment.
+
+1.Static Optional Segment - A static optional segment means a fixed part of the URL path (not a parameter) that may or may not exist.
+It’s written in parentheses ( ) inside the route path.
+
+2.Dynamic Optional Segment - A dynamic segment is a URL parameter (like :id).
+When you add a ?, it becomes optional → the route can work with or without that parameter.
+
+import { Link, Outlet } from "react-router";
+import './header.css'
+export default function NavBar() {
+    return<div>
+         <div className="header">
+        <div>
+            <Link className="link" to={"/"}><h2>Logo</h2></Link>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <Link className="link" to="/">Home</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/in/user/login">Login</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/in/user/about">About</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/college">College</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/users">Users</Link>
+                </li>
+                <li>
+                    <Link className="link" to="/users/list">List</Link>
+                </li>
+               
+            </ul>
+        </div>
+       
+    </div>
+    <Outlet />
+    </div>
+}
+
+export default function About(){
+    return<h1>About Page</h1>
+}
+
+import { Link } from "react-router"
+export default function UserList() {
+    const userData = [
+        { id: 1, name: 'Anil' },
+        { id: 2, name: 'Sam' },
+        { id: 3, name: 'Sidhu' },
+        { id: 4, name: 'Peter' },
+        { id: 5, name: 'Bruce' },
+        { id: 6, name: 'Tony' },
+    ]
+    return <div style={{ marginLeft: 20 }} >
+        <h1>User List Page</h1>
+        {
+            userData.map((item) => (
+                <div>
+                    <h4><Link to={"/users/"+item.id}  >{item.name}</Link></h4>
+                </div>
+            ))
+        }
+<h1>User List Page with Name in URL</h1>
+        {
+            userData.map((item) => (
+                <div>
+                    <h4><Link to={"/users/"+item.id+"/"+item.name}  >{item.name}</Link></h4>
+                </div>
+            ))
+        }
+    </div>
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e1caca;
+    padding: 10px;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.header ul {
+    display: flex;
+    list-style-type: none;
+    margin: auto;
+    justify-content: space-around;
+    width: 450px;
+}
+.header ul li{
+    padding: 10px;
+}
+.header .link h2{
+    margin: 0;
+}
+.header .link{
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.college .link{
+    text-decoration: none;
+    font-size: 20px;
+    margin: 10px;
+}
+______________________________________________________________________________________________________________________________________
+
+54.NavLink and Active Class -
+In React Router, a NavLink is a special type of link used for navigation that can automatically apply active styling when the 
+link’s route matches the current URL.
+
+import { NavLink, Outlet } from "react-router";
+import './header.css'
+export default function NavBar() {
+    return <div>
+        <div className="header">
+            <div>
+                <NavLink className="link" to={"/"}><h2>Logo</h2></NavLink>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <NavLink className={({ isActive }) => isActive ? 'custom-active link' : 'link'} to="/">Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="link" to="/in/user/login">Login</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="link" to="/in/user/about">About</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="link" to="/college">College</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="link" to="/users">Users</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="link" to="/users/list">List</NavLink>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <Outlet />
+    </div>
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e1caca;
+    padding: 10px;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.header ul {
+    display: flex;
+    list-style-type: none;
+    margin: auto;
+    justify-content: space-around;
+    width: 450px;
+}
+.header ul li{
+    padding: 10px;
+}
+.header .link h2{
+    margin: 0;
+}
+.header .link{
+    text-decoration: none;
+    font-size: 20px;
+}
+.college .link{
+    text-decoration: none;
+    font-size: 20px;
+    margin: 10px;
+}
+.active{
+    font-weight: 800;
+}
+.custom-active{
+    font-weight: 900;
+    color: blue;
+}
+____________________________________________________________________________________________________________________________________________
+
+55.Install Tailwind CSS in React.js -
+Open Links for installation
+Install tailwind CSS and helper package
+Update config file
+Apply Tailwind css and test
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{jsx,}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+export default function App() {
+  return (
+   <div>
+   <h2 className="bg-red-700 text-3xl border-green-600 border-8">Tailwind CSS setup</h2>
+    </div>
+  )
+}
+____________________________________________________________________________________________________________________________________________
+
+56.What is API -
+API - Application Programming Interface.
+We need data from DB when making projects.But JS can not connect with Database.So we make api in other language as Java, PHP or node etc
+We need same data in multiple platform.
+Like Web app, mobile app, Windos OS etc.
+So we make API in one language
+And use same api with all platforms
+API uses JSON data
+____________________________________________________________________________________________________________________________________________
+
+57.Fetch and Display Data from API with Get Method -
+API Methods
+Test API
+Integrate API
+Display API data
+
+GET
+POST
+PUT/PATCH
+DELETE
+
+import { useEffect, useState } from "react";
+import './App.css'
+export default function App() {
+  const [userData,setUserData]=useState([]) 
+  const [loading,setLoading]=useState(false)
+  useEffect(()=>{
+    setLoading(true)
+    getUserData();
+  },[])
+
+  const getUserData = async()=>{
+    const url="http://localhost:3000/users";
+    let response = await fetch(url);
+    response = await response.json();
+    console.log(response);
+    setUserData(response)
+    setLoading(false)
+    
+  }
+  return (
+    <div>
+      <h1>Integrate JSON Server API and Loader</h1>
+      <ul className="user-list user-list-head">
+          <li>Name</li>
+          <li>Age</li>
+          <li>Email</li>
+</ul>
+      {
+        !loading?
+        userData.map((user)=>(
+         <ul key={user.name} className="user-list">
+          <li>{user.name}</li>
+          <li>{user.age}</li>
+          <li>{user.email}</li>
+</ul>
+        ))
+        :<h1>Data Loading...</h1>
+      }
+   </div>
+  )
+}
+
+.user-list{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #aaa;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+}
+.user-list-head{
+    font-size: 20px;
+   font-weight: 800;
+}
+____________________________________________________________________________________________________________________________________________
+
+58.Make API for React, Angular, Vue -
+Install json server on device.(Link - https://github.com/typicode/json-server)
+For that we have to use github link and install in folder with command prompt.
+
+{
+  "users": [
+    {
+      "name": "Anil",
+      "email": "anil@test.com",
+      "age": "29",
+      "id": "da84"
+    },
+    {
+      "name": "Sam",
+      "email": "sam@test.com",
+      "age": "32",
+      "id": "c648"
+    },
+    {
+      "name": "aswi",
+      "email": "aswi@test.com",
+      "age": "20",
+      "id": "d691"
+    }
+  ]
+}
+____________________________________________________________________________________________________________________________________________
+
+59.Integrate JSON Server API and Loader -
+Make function for API call.
+Display data fon UI from API
+Common error fix
+Make Loading State
+Display Loader
+
+import { useEffect, useState } from "react";
+import './App.css'
+export default function App() {
+const [userData,setUserData]=useState([]) 
+  const [loading,setLoading]=useState(false)
+  useEffect(()=>{
+    setLoading(true)
+    getUserData();
+  },[])
+const getUserData = async()=>{
+    const url="http://localhost:3000/users";
+    let response = await fetch(url);
+    response = await response.json();
+    console.log(response);
+    setUserData(response)
+    setLoading(false)
+    }
+  return (
+    <div>
+      <h1>Integrate JSON Server API and Loader</h1>
+      <ul className="user-list user-list-head">
+          <li>Name</li>
+          <li>Age</li>
+          <li>Email</li>
+</ul>
+      {
+        !loading?
+        userData.map((user)=>(
+         <ul key={user.name} className="user-list">
+          <li>{user.name}</li>
+          <li>{user.age}</li>
+          <li>{user.email}</li>
+</ul>
+        ))
+        :<h1>Data Loading...</h1>
+      }
+   </div>
+  )
+}
+
+.user-list{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #aaa;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+}
+.user-list-head{
+    font-size: 20px;
+   font-weight: 800;
+}
+____________________________________________________________________________________________________________________________________________
+
+60.Routes and Pages for User list and Add User UI -
+Make BrowserRouter wrapper around the app
+Make Routes
+Make components
+Make links
+Test link, routes and screens
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import { BrowserRouter } from 'react-router'
+
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+)
+
+import { NavLink, Route, Routes } from 'react-router'
+import './App.css'
+import UserAdd from './UserAdd'
+import UserList from './UserList'
+import UserEdit from './UserEdit'
+export default function App() {
+  return (
+    <div>
+      <ul className='nav-list'>
+        <li>
+          <NavLink to="/">List</NavLink>
+        </li>
+        <li><NavLink to="/add">Add User</NavLink></li>
+      </ul>
+   {/* <h1>Make Routes and Pages for Add User and User List UI</h1> */}
+   <Routes >
+    <Route path="/" element={<UserList />} />
+    <Route path="/add" element={<UserAdd />} />
+    <Route path="/edit/:id" element={<UserEdit />} />
+  </Routes>
+    </div>
+  )
+}
+
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+export default function UserList() {
+  const [userData,setUserData]=useState([]) 
+  const [loading,setLoading]=useState(false)
+  const navigate = useNavigate();
+  const url="http://localhost:3000/users";
+  useEffect(()=>{
+    setLoading(true)
+    getUserData();
+  },[])
+  const getUserData = async()=>{
+    let response = await fetch(url);
+    response = await response.json();
+    console.log(response);
+    setUserData(response)
+    setLoading(false)
+  }
+  const deleteUser= async(id)=>{
+   let response = await fetch(url+"/"+id,{
+    method:'delete'
+   })
+   response = await response.json();
+   if(response){
+    alert("record deleted")
+    getUserData()
+   }
+}
+const editUser=(id)=>{
+    navigate("/edit/"+id)
+  }
+return (
+    <div>
+     <ul className="user-list user-list-head">
+          <li>Name</li>
+          <li>Age</li>
+          <li>Email</li>
+          <li>Action</li>
+         </ul>
+      {
+        !loading?
+        userData.map((user)=>(
+         <ul key={user.name} className="user-list">
+          <li>{user.name}</li>
+          <li>{user.age}</li>
+          <li>{user.email}</li>
+          <li>
+            <button onClick={()=>deleteUser(user.id)} >Delete</button>
+            <button onClick={()=>editUser(user.id)} >Edit</button>
+            </li>
+         </ul>
+        ))
+        :<h1>Data Loading...</h1>
+      }
+   
+    </div>
+  )
+}
+
+import { useState } from "react"
+function UserAdd() {
+  const [name, setName] = useState('')
+  const [age, setAge] = useState('')
+  const [email, setEmail] = useState('')
+const createUser = async () => {
+    console.log(name, age, email);
+    const url = "http://localhost:3000/users";
+    let response = await fetch(url, {
+      method: 'Post',
+      body: JSON.stringify({ name, email, age })
+    });
+    response = await response.json();
+    if (response) {
+      alert("new user added")
+    }
+}
+  return (
+    <div style={{ textAlign: "center" }}>
+      <h1>Add New User</h1>
+      <input type="text"
+        onChange={(event) => setName(event.target.value)} placeholder="enter name" />
+      <br /><br />
+      <input type="text"
+        onChange={(event) => setAge(event.target.value)}
+        placeholder="enter age" />
+      <br /><br />
+      <input type="text"
+        onChange={(event) => setEmail(event.target.value)}
+        placeholder="enter email" />
+      <br /><br />
+      <button onClick={createUser} >Add User</button>
+    </div>
+  )
+}
+
+export default UserAdd;
+
+.user-list{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #aaa;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+}
+.user-list-head{
+    font-size: 20px;
+   font-weight: 800;
+}
+.nav-list{
+    display: flex;
+    width: 400px;
+    justify-content: space-around;
+    list-style: none;
+}
+____________________________________________________________________________________________________________________________________________
+
+61.Integrate Post method API -
+Make Input fields
+Make State
+Get Input field data in State
+Call POST method API
+Check data in saved or not
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import { BrowserRouter } from 'react-router'
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+)
+
+import { useState } from "react"
+function UserAdd() {
+  const [name, setName] = useState('')
+  const [age, setAge] = useState('')
+  const [email, setEmail] = useState('')
+  const createUser = async () => {
+    console.log(name, age, email);
+    const url = "http://localhost:3000/users";
+    let response = await fetch(url, {
+      method: 'Post',
+      body: JSON.stringify({ name, email, age })
+    });
+    response = await response.json();
+    if (response) {
+      alert("new user added")
+    }
+  }
+  return (
+    <div style={{ textAlign: "center" }}>
+      <h1>Add New User</h1>
+      <input type="text"
+        onChange={(event) => setName(event.target.value)} placeholder="enter name" />
+      <br /><br />
+      <input type="text"
+        onChange={(event) => setAge(event.target.value)}
+        placeholder="enter age" />
+      <br /><br />
+      <input type="text"
+        onChange={(event) => setEmail(event.target.value)}
+        placeholder="enter email" />
+      <br /><br />
+      <button onClick={createUser} >Add User</button>
+    </div>
+  )
+}
+export default UserAdd;
+
+import { useEffect, useState } from "react";
+export default function UserList() {
+  const [userData,setUserData]=useState([]) 
+  const [loading,setLoading]=useState(false)
+  useEffect(()=>{
+    setLoading(true)
+    getUserData();
+  },[])
+  const getUserData = async()=>{
+    const url="http://localhost:3000/users";
+    let response = await fetch(url);
+    response = await response.json();
+    console.log(response);
+    setUserData(response)
+    setLoading(false)
+   }
+  return (
+    <div>
+      <ul className="user-list user-list-head">
+          <li>Name</li>
+          <li>Age</li>
+          <li>Email</li>
+</ul>
+      {
+        !loading?
+        userData.map((user)=>(
+         <ul key={user.name} className="user-list">
+          <li>{user.name}</li>
+          <li>{user.age}</li>
+          <li>{user.email}</li>
+
+         </ul>
+        ))
+        :<h1>Data Loading...</h1>
+      }
+   </div>
+  )
+}
+_____________________________________________________________________________________________________________________________________________
+
+62.Integrate Delete Method API -
+Add Delete button.
+Call API for delete
+Remove delete row from UI
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import { BrowserRouter } from 'react-router'
+
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+)
+
+import { useEffect, useState } from "react";
+export default function UserList() {
+  const [userData,setUserData]=useState([]) 
+  const [loading,setLoading]=useState(false)
+  const url="http://localhost:3000/users";
+  useEffect(()=>{
+    setLoading(true)
+    getUserData();
+  },[])
+  const getUserData = async()=>{
+   
+    let response = await fetch(url);
+    response = await response.json();
+    console.log(response);
+    setUserData(response)
+    setLoading(false)
+   }
+  const deleteUser= async(id)=>{
+   let response = await fetch(url+"/"+id,{
+    method:'delete'
+   })
+   response = await response.json();
+   if(response){
+    alert("record deleted")
+    getUserData()
+   }
+
+    
+  }
+  return (
+    <div>
+      <ul className="user-list user-list-head">
+          <li>Name</li>
+          <li>Age</li>
+          <li>Email</li>
+          <li>Action</li>
+         </ul>
+      {
+        !loading?
+        userData.map((user)=>(
+         <ul key={user.name} className="user-list">
+          <li>{user.name}</li>
+          <li>{user.age}</li>
+          <li>{user.email}</li>
+          <li><button onClick={()=>deleteUser(user.id)} >Delete</button></li>
+         </ul>
+        ))
+        :<h1>Data Loading...</h1>
+      }
+       </div>
+  )
+}
+_____________________________________________________________________________________________________________________________________________
+
+63.Make Page for Edit user details -
+Add Edit Button
+Define Edit Page Route
+Make Edit Page
+Navigation to Edit Page
+Define Input fields
+
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+export default function UserList() {
+const [userData,setUserData]=useState([]) 
+  const [loading,setLoading]=useState(false)
+  const navigate = useNavigate();
+  const url="http://localhost:3000/users";
+  useEffect(()=>{
+    setLoading(true)
+    getUserData();
+  },[])
+  const getUserData = async()=>{
+   
+    let response = await fetch(url);
+    response = await response.json();
+    console.log(response);
+    setUserData(response)
+    setLoading(false)
+  }
+  const deleteUser= async(id)=>{
+   let response = await fetch(url+"/"+id,{
+    method:'delete'
+   })
+   response = await response.json();
+   if(response){
+    alert("record deleted")
+    getUserData()
+   }
+  }
+  const editUser=(id)=>{
+    navigate("/edit/"+id)
+  }
+  return (
+    <div>
+      <ul className="user-list user-list-head">
+          <li>Name</li>
+          <li>Age</li>
+          <li>Email</li>
+          <li>Action</li>
+         </ul>
+      {
+        !loading?
+        userData.map((user)=>(
+         <ul key={user.name} className="user-list">
+          <li>{user.name}</li>
+          <li>{user.age}</li>
+          <li>{user.email}</li>
+          <li>
+            <button onClick={()=>deleteUser(user.id)} >Delete</button>
+            <button onClick={()=>editUser(user.id)} >Edit</button>
+            </li>
+         </ul>
+        ))
+        :<h1>Data Loading...</h1>
+      }
+    </div>
+  )
+}
+
+import { NavLink, Route, Routes } from 'react-router'
+import './App.css'
+import UserAdd from './UserAdd'
+import UserList from './UserList'
+import UserEdit from './UserEdit'
+export default function App() {
+  return (
+    <div>
+      <ul className='nav-list'>
+        <li>
+          <NavLink to="/">List</NavLink>
+        </li>
+        <li><NavLink to="/add">Add User</NavLink></li>
+      </ul>
+   {/* <h1>Make Routes and Pages for Add User and User List UI</h1> */}
+   <Routes >
+    <Route path="/" element={<UserList />} />
+    <Route path="/add" element={<UserAdd />} />
+    <Route path="/edit/:id" element={<UserEdit />} />
+  </Routes>
+    </div>
+  )
+}
+
+function UserEdit() {
+    return (
+        <div style={{ textAlign: 'center' }}>
+            <h1>Edit User Details</h1>
+            <input type="text" placeholder="user name" />
+            <br /><br />
+            <input type="text" placeholder="user email" />
+            <br /><br />
+            <input type="text" placeholder="user age" />
+            <br /><br />
+            <button >Update User</button>
+        </div>
+    )
+}
+export default UserEdit;
+_____________________________________________________________________________________________________________________________________________
+
+64.Populate Data in input fields with API -
+Get Id from URL
+Call API for single user data
+Define state for api data
+Populate data in input fields
+Interview Questions
+
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+function UserEdit() {
+  const {id}=useParams();
+  const [name, setName] = useState('')
+  const [age, setAge] = useState('')
+  const [email, setEmail] = useState('')
+
+    useEffect(()=>{
+        getUserData()
+    },[])
+    const getUserData=async()=>{
+    const url ="http://localhost:3000/users/"+id;
+    let response = await fetch(url);
+    response  =await response.json();
+    setName(response.name)
+    setEmail(response.email)
+    setAge(response.age)
+    }
+    return (
+        <div style={{ textAlign: 'center' }}>
+            <h1>Edit User Details</h1>
+            <input type="text" value={name} placeholder="user name" />
+            <br /><br />
+            <input type="text" value={email} placeholder="user email" />
+            <br /><br />
+            <input type="text" value={age} placeholder="user age" />
+            <br /><br />
+            <button >Update User</button>
+        </div>
+    )
+}
+export default UserEdit;
+
+import { NavLink, Route, Routes } from 'react-router'
+import './App.css'
+import UserAdd from './UserAdd'
+import UserList from './UserList'
+import UserEdit from './UserEdit'
+export default function App() {
+  return (
+    <div>
+      <ul className='nav-list'>
+        <li>
+          <NavLink to="/">List</NavLink>
+        </li>
+        <li><NavLink to="/add">Add User</NavLink></li>
+      </ul>
+   {/* <h1>Make Routes and Pages for Add User and User List UI</h1> */}
+   <Routes >
+    <Route path="/" element={<UserList />} />
+    <Route path="/add" element={<UserAdd />} />
+    <Route path="/edit/:id" element={<UserEdit />} />
+  </Routes>
+    </div>
+  )
+}
+_____________________________________________________________________________________________________________________________________________
+
+65.Update data with PUT API Method -
+Update state value
+Make function for call put method api
+Write code for call api
+Redirect after Update data
+
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+function UserEdit() {
+    const {id}=useParams();
+   const [name, setName] = useState('')
+  const [age, setAge] = useState('')
+  const [email, setEmail] = useState('')
+  const url ="http://localhost:3000/users/"+id;
+  const navigate = useNavigate();
+
+    useEffect(()=>{
+        getUserData()
+    },[])
+    const getUserData=async()=>{
+       
+    let response = await fetch(url);
+    response  =await response.json();
+
+    setName(response.name)
+    setEmail(response.email)
+    setAge(response.age)
+    }
+const updateUserData=async()=>{
+        console.log(name,age,email);
+        let response = await fetch(url,{
+            method:'Put',
+            body:JSON.stringify({name,age,email})
+        });
+        response = await response.json();
+        console.log(response);
+        if(response){
+            alert("User data updated");
+            navigate('/')
+        }    }
+    return (
+        <div style={{ textAlign: 'center' }}>
+            <h1>Edit User Details</h1>
+            <input type="text" value={name} onChange={(event)=>setName(event.target.value)} placeholder="user name" />
+            <br /><br />
+            <input type="text" value={email} onChange={(event)=>setEmail(event.target.value)}  placeholder="user email" />
+            <br /><br />
+            <input type="text" value={age} onChange={(event)=>setAge(event.target.value)}  placeholder="user age" />
+            <br /><br />
+            <button onClick={updateUserData} >Update User</button>
+        </div>
+    )
+}
+export default UserEdit;
+_____________________________________________________________________________________________________________________________________________
+
+66.simple validation on input fields -
+Make input field and define state to store Data
+Apply Validation
+Display error message
+Apply Validation on other input field
+
+import { useState } from 'react';
+import './App.css'
+function App() {
+const [name,setName]=useState('');
+const [nameErr,setNameErr]=useState(); 
+
+const [password,setPassword]=useState('');
+const [passErr,setPassErr]=useState(); 
+
+const handleName=(event)=>{
+  console.log(event.target.value);
+  if(event.target.value.length>5){
+    setNameErr("Please enter valid username. only 5 characters allowed ")
+  }else{
+    setNameErr()
+  }
+}
+const handlePassword=(event)=>{
+  let regex= /^[A-Z0-9]+$/i;
+  if(regex.test(event.target.value)){
+    setPassErr()
+     }else{
+    setPassErr("Please enter valid password. only numbers and alphabets allowed ")
+  }
+}
+  return (
+    <div>
+      <input className={nameErr?'error':''} type="text" onChange={handleName} placeholder='enter name ' />
+      <span className='red-color'>{nameErr && nameErr}</span>
+      <br /><br />
+      <input className={passErr?'error':''} type="text" placeholder='enter password' onChange={handlePassword} />
+      <span className='red-color'>{passErr && passErr}</span>
+      <br /><br />
+      <button disabled={passErr || nameErr} >Login</button>
+
+    </div>
+  );
+}
+export default App;
+
+.error{
+  border: 1px solid red;
+}
+.error:focus{
+  outline: 1px solid red;
+}
+
+.red-color{
+  color: red;
+}
+_____________________________________________________________________________________________________________________________________________
+
+67.validation with useActionState -
+Make Form and input fields.
+Make Action function
+Apply Validation
+Display error message
+
+import { useActionState } from 'react';
+import './App.css'
+function App() {
+
+  const handleLogin = (prevData, formData) => {
+    let name = formData.get('name')
+    let password = formData.get('password')
+    let regex = /^[A-Z0-9]+$/i;
+    if ( !name || name.length > 5) {
+      return { error: 'Name can not be empty or Name should not container more then 5 characters',name,password }
+    } else if (!regex.test(password)) {
+      return { error: 'Password can  container only numbers and alphabets',name,password }
+    } else {
+      return { message: 'Login done',name,password }
+    }
+  }
+  const [data, action, pending] = useActionState(handleLogin);
+  return (
+    <div>
+      <h1>Validation with useActionState in React</h1>
+      {
+       data?.message && <span style={{color:'green'}} > {data?.message}</span>
+      }
+      {
+       data?.error && <span  style={{color:'red'}}> {data?.error}</span>
+      }
+      <form action={action}>
+        <input defaultValue={data?.name}  type="text" name='name' placeholder='enter user name' />
+        <br /><br />
+        <input type="text" defaultValue={data?.password}  name='password' placeholder='enter user password' />
+        <br /><br />
+        <button  >Login</button>
+      </form>
+    </div>
+  );
+}
+export default App;
+_______________________________________________________________________________________________________________________________________________
+
+68.Lazy Loading: Boost Performance! -
+What is Lazy loading.
+How to use lazy loading.
+Suspense use with lazy loading.
+Check Performance.
+
+Lazy loading is a performance optimization technique that defers the loading of non-critical resources, like images, videos, or JavaScript, until they are actually needed by the user.
+
+import React, { lazy, Suspense, useState } from 'react';
+// import User from './User';
+const User =lazy(()=>import('./User'));
+function App() {
+  const [load,setLoad]=useState(false)
+  return (
+    <div>
+      <h1>Lazy Loading</h1>
+      <button onClick={()=>setLoad(true)} >Load User</button>
+     {
+      load? <Suspense fallback={<h3>loading...</h3>} > <User /></Suspense>:null
+     }
+     {/* {load?<User />:null} */}
+    </div>
+  );
+}
+export default App;
+
+function User(){
+    return(
+        <div>
+            <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1>
+            <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1> <h1>User name is Anil Sidhu</h1>
+            </div>
+    )
+}
+export default User;
+______________________________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

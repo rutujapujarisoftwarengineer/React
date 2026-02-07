@@ -33,8 +33,8 @@ useCallback
 useMemo
 useLayoutEffect
 useImperativeHandle
-
 Custom Hooks (very important)
+
 4. React Architecture Concepts
 Component Composition
 Container vs Presentational Components

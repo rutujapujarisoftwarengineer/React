@@ -1,0 +1,98 @@
+React WorldAtlas Project details - 
+React Thapa technical youtube channel github link - https://github.com/thapatechnical/thapa-react-19-website
+
+1.NavBar - This section includes total 2 parts. One for WorldAtlas and another for Home, About, Country and Contact. All the respective codes
+are available in vs code/Github.
+We used react router dom concept for this. 
+
+2.Hero Section -
+This section includes total 3 parts. 
+1.Parent component - This include both parts as header, para and button part. And also include image part.
+2.Child component - This is header, para and button part.
+3.Child component - This is image part.
+
+File name - HeroSection.jsx
+<FaLongArrowAltRight /> - This is component
+import { FaLongArrowAltRight } from "react-icons/fa"; - This is import. These both are used from react icons website.
+
+3.About page - This about page we have inserted in Home page. About page is divided in total 3 div parts. 
+It contains header and div. Each div part have json data which in the file CountryData.json file under api folder under src.
+Now, Under div part we have these id, countryName, capital, population, interestingFact keys which are under each country.
+We used map() function from JS for country and used key as id for card. Becoz id is different for all countries. 
+i.e. we created api and inserted code for card as for all countries.
+And also we have to give HeroSection and About (<HeroSection /> <About />) inside Home.jsx like this.
+Now we are having our home and about page is ready without footer.
+
+4.Contact.jsx - In this we have developed on contact us form. In the code we have new concept,
+formData.entries() - It returns an iterator of key-value pairs from the form data.
+Each key corresponds to a form input's name and the value corresponds to the input's value.
+e.g.if your form has fields like <input name = "username", value= "John" />, it will return ['username', 'john']			
+
+Object.fromEntries(formData.entries()): 
+Object.fromEntries() - It is a method that converts an iterable of key-value pairs(like the one returned by formData.entries()) into an object 
+where each input field's name is a key and its value is a corresponding value.
+e.g.if the form had two fields username=John and password="abcd" this method will create object: ['John', 'abcd'] 
+
+5.Footer.jsx - In this we have code for footer section which includes Find Us, Call Us, Email Us icons. These icons used from react icons.
+We created one object which is common for all the icons.And given name as icon as dynamic. Becoz we can't pass all three icons at a time. 
+Hence, we passed dynamic icon which creates logos for all icons on website.
+
+6.Footerapi.json - This is having all object like icon,title and details as key and value pairs. These pairs we use 
+for footer section.
+
+7.Country page -
+Under api -> create postApi.jsx -> we are using axios for api creation. Also we can use fetch method. But, We are creating instance of the
+axios using axios.create function. Under this function we have passed BaseURL.
+
+Country.jsx - Inside this file we used useEffect() hook and made function async-await. We have to import postApi in this file and we 
+have displayed data on console. Also, we have included <Loader />.
+
+Loader.jsx - This includes loader function which is already available and displays loader.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
